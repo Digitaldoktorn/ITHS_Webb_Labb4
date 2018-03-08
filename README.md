@@ -5,4 +5,4 @@ E-am uppdaterade texten!!
 Izabela
 heja
 hej 2
-uppdatering Tom
+uppdatering 
