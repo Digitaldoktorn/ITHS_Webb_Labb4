@@ -30,7 +30,7 @@ class ChatAppComponent extends React.Component {
     signIn(){
         this.setState({user: this.state.userInput});
     }
-    
+
     sendString() {
         fetch('/string', {
             body: '{"from": "' + this.state.user + '", "to": "' + this.state.rec + '", "string": "' + this.state.string + '"}',
@@ -68,6 +68,7 @@ class ChatAppComponent extends React.Component {
     }
 
     render() {
+        console.log('git update');
         return <div>
             <div id="header"><img src="logo.png"></img>
                 <div id="login">
