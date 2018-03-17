@@ -1,1 +1,2 @@
-Ongoing project. We are creating a chat application.
+
+Ongoing project!
