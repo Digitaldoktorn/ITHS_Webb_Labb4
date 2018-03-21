@@ -19,10 +19,26 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
   }
 });
 
-// GET-request. "find" is empty and will then get all objects in the collection. If you want to choose a certain object, enter the key/value pair within curly braces. "result" is the data that we get from the collection and what is presented in the browser after a fetch from frontend. THIS WORKS!!! (Module 11, exercise 4)
-app.get('/', function(request, response){
+// GET-request. "find" is empty and will then get all objects in the collection. If you want to choose a certain object, enter the key/value pair within curly braces. "result" is the data that we get from the collection and what is presented in the browser after a fetch from frontend. (Module 11, exercise 4)
+
+// FRÅGA ALF: // framkallade error i Insomnia genom att lägga till tecken i url. syns inget i konsolen. ??? jag la även till 'message' i app.get. Rätt? La även till 'user' nedan till de olika anropen
+app.get('/message', function(request, response){
   db.collection('message').find({}).toArray(function(error, result){
-    response.send(result);
+    if (error){
+      console.log(error);
+    } else {
+      response.send(result);
+    }
+  });
+});
+
+app.get('/user', function(request, response){
+  db.collection('user').find({}).toArray(function(error, result){
+    if (error){
+      console.log(error);
+    } else {
+      response.send(result);
+    }
   });
 });
 
@@ -33,8 +49,14 @@ app.post('/message', function (request, response){
   });
 });
 
+app.post('/user', function (request, response){
+  db.collection('user').insert(request.body, function (error, result){
+    response.send(result);
+  });
+});
+
 // PUT-requst, replace with new data in Insomnia (Module 11 exercise 8)
-app.put('/', function (request, response){
+app.put('/message', function (request, response){
   db.collection('message').remove(
     {},
     function (error, result) {
@@ -44,8 +66,18 @@ app.put('/', function (request, response){
     }
   );
 });
-
-// DELETE-request - Enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7)
+app.put('/user', function (request, response){
+  db.collection('user').remove(
+    {},
+    function (error, result) {
+      db.collection('user').insertMany(request.body, function(){
+        response.send({});
+      });
+    }
+  );
+});
+/*
+// DELETE-request - To delete and object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7). FRÅGA ALF, jämför med Alfs kod. Kan ta bort meddelanden men inte users som det är nu
 app.delete('/:id', function (request, response) {
   db.collection('message').remove(
     { _id: new ObjectId(request.params.id) },
@@ -54,6 +86,28 @@ app.delete('/:id', function (request, response) {
     }
   );
 });
+*/
+// DELETE-request ny
+app.delete('/message', function (request, response) {
+  database.collection('message').remove({}, function (error) {
+    if (error) {
+      console.log(error);
+    } else {
+      response.send({});
+    }
+  });
+});
+
+app.delete('/user', function (request, response) {
+  database.collection('user').remove({}, function (error) {
+    if (error) {
+      console.log(error);
+    } else {
+      response.send({});
+    }
+  });
+});
+
 
 app.listen(3000, function(){
   console.log('The service is running!');
