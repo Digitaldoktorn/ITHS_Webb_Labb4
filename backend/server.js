@@ -21,6 +21,10 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
 
 // Serving static files --- (Module 10 exercise 7)
 app.use(express.static(path.join(path.resolve(), 'public'))); // static-middleware
+
+//create path for linking bundle.js (we might wanna work around this later to move the html-file to the frontend folder)
+app.use(express.static('../'));
+
 app.use(bodyParser.json());
 
 // GET-request. "find" is empty and will then get all objects in the collection. If you want to choose a certain object, enter the key/value pair within curly braces. "result" is the data that we get from the collection and what is presented in the browser after a fetch from frontend. (Module 11, exercise 4)
@@ -60,6 +64,7 @@ app.post('/user', function (request, response){
 });
 
 // PUT-requst, replace with new data in Insomnia (Module 11 exercise 8)
+//BE CAREFULL HERE, THIS WILL DELETE ALL EXISTING MESSAGES!
 app.put('/message', function (request, response){
   db.collection('message').remove(
     {},
@@ -70,6 +75,7 @@ app.put('/message', function (request, response){
     }
   );
 });
+//BE CAREFULL HERE, THIS WILL DELETE ALL EXISTING USERS!
 app.put('/user', function (request, response){
   db.collection('user').remove(
     {},
