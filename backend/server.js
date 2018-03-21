@@ -21,7 +21,7 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
 
 // GET-request. "find" is empty and will then get all objects in the collection. If you want to choose a certain object, enter the key/value pair within curly braces. "result" is the data that we get from the collection and what is presented in the browser after a fetch from frontend. (Module 11, exercise 4)
 
-// FRÅGA ALF: // framkallade error i Insomnia genom att lägga till tecken i url. syns inget i konsolen. ??? jag la även till 'message' i app.get. Rätt? La även till 'user' nedan till de olika anropen
+// FRÅGA ALF: // Jag framkallade error i Insomnia genom att lägga till tecken i url. Syns inget felmeddelande i konsolen. ??? jag la även till 'message' i app.get. La även till 'user' nedan till de olika anropen
 app.get('/message', function(request, response){
   db.collection('message').find({}).toArray(function(error, result){
     if (error){
@@ -77,7 +77,7 @@ app.put('/user', function (request, response){
   );
 });
 /*
-// DELETE-request - To delete and object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7). FRÅGA ALF, jämför med Alfs kod. Kan ta bort meddelanden men inte users som det är nu
+// DELETE-request gammal- To delete an object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7).
 app.delete('/:id', function (request, response) {
   db.collection('message').remove(
     { _id: new ObjectId(request.params.id) },
@@ -87,7 +87,7 @@ app.delete('/:id', function (request, response) {
   );
 });
 */
-// DELETE-request ny
+// DELETE-request ny - Funkar ej FRÅGA ALF, jämför med Alfs kod. Kan ta bort meddelanden men inte users som det är nu
 app.delete('/message', function (request, response) {
   database.collection('message').remove({}, function (error) {
     if (error) {
