@@ -1,12 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var path = require('path');
+var path = require('path'); // the path module makes it easier to use the static middleware
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var app = express();
 var db;
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // middleware
 
 // Connecting to DB (Module 11)
 MongoClient.connect('mongodb://localhost:27017', function(error, client) {
@@ -19,9 +19,13 @@ MongoClient.connect('mongodb://localhost:27017', function(error, client) {
   }
 });
 
+// Serving static files --- (Module 10 exercise 7)
+app.use(express.static(path.join(path.resolve(), 'public'))); // static-middleware
+app.use(bodyParser.json());
+
 // GET-request. "find" is empty and will then get all objects in the collection. If you want to choose a certain object, enter the key/value pair within curly braces. "result" is the data that we get from the collection and what is presented in the browser after a fetch from frontend. (Module 11, exercise 4)
 
-// FRÅGA ALF: // Jag framkallade error i Insomnia genom att lägga till tecken i url. Syns inget felmeddelande i konsolen. ??? jag la även till 'message' i app.get. La även till 'user' nedan till de olika anropen
+// I forced error in Insomnia in order to see if the console log works. It didn't. I added 'message' in app.get. I added 'user' in the http requests below
 app.get('/message', function(request, response){
   db.collection('message').find({}).toArray(function(error, result){
     if (error){
@@ -77,7 +81,7 @@ app.put('/user', function (request, response){
   );
 });
 /*
-// DELETE-request gammal- To delete an object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7).
+// DELETE-request old- To delete an object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7).
 app.delete('/:id', function (request, response) {
   db.collection('message').remove(
     { _id: new ObjectId(request.params.id) },
@@ -87,7 +91,7 @@ app.delete('/:id', function (request, response) {
   );
 });
 */
-// DELETE-request ny - Funkar ej FRÅGA ALF, jämför med Alfs kod. Kan ta bort meddelanden men inte users som det är nu
+// DELETE-request new - doesn't work!
 app.delete('/message', function (request, response) {
   database.collection('message').remove({}, function (error) {
     if (error) {
