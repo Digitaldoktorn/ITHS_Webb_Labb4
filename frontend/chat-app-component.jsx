@@ -6,7 +6,7 @@ class ChatAppComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: 'user1'
+            user: ''
         };
 
     }
