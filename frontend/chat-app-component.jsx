@@ -16,12 +16,11 @@ class ChatAppComponent extends React.Component {
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
-        fetch('/user').then(function (response) {
+        fetch('/message').then(function (response) {
             return response.json();
         }).then(function (result) {
             console.log(result);
-            this.setState({allUsers: result});
-        }.bind(this));
+        });
     }
 
     //Function runs when exiting component, we can use this to toggle user as offline or see last time user signed in
@@ -32,12 +31,6 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
-            <p>logged in as: {this.state.user}</p>
-            <ul>
-                {this.state.allUsers && this.state.allUsers.map(function(user){
-                    return <li key={user._id}>{user.name}</li>;
-                })}
-            </ul>
         </div>;
     }
 }
