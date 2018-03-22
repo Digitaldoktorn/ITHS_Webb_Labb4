@@ -99,7 +99,7 @@ app.delete('/:id', function (request, response) {
 */
 // DELETE-request new - doesn't work!
 app.delete('/message', function (request, response) {
-  database.collection('message').remove({}, function (error) {
+  db.collection('message').remove({}, function (error) {
     if (error) {
       console.log(error);
     } else {
@@ -109,7 +109,7 @@ app.delete('/message', function (request, response) {
 });
 
 app.delete('/user', function (request, response) {
-  database.collection('user').remove({}, function (error) {
+  db.collection('user').remove({}, function (error) {
     if (error) {
       console.log(error);
     } else {
