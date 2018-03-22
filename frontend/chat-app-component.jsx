@@ -31,6 +31,8 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
+            <div class='display-window'></div>
+            <input></input><button>skicka</button>
         </div>;
     }
 }
