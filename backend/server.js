@@ -83,6 +83,7 @@ app.put('/message', function (request, response){
     }
   );
 });
+/*
 //BE CAREFULL HERE, THIS WILL DELETE ALL EXISTING USERS!
 app.put('/user', function (request, response){
   db.collection('user').remove(
@@ -93,6 +94,34 @@ app.put('/user', function (request, response){
       });
     }
   );
+});
+*/
+// PUT-requests New - March 24!
+app.put('/user/:name', function (request, response) {
+  db.collection('user').update(
+    {name: request.params.name},
+    {$push: {friends: request.body}},
+    function (error, result) {
+      if(error) {
+        console.log(error);
+      } else {
+        response.send(result);
+      }
+    }
+  );
+});
+
+app.put('/confirm', function (request, response){
+  db.collection('user').update(
+    {name: request.query.name, 'friends.friendsname': request.query.name2},
+    {$set: {'friends.$.status': 'confirmed'}}, {multi: true},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      } else {
+        response.send(result);
+      }
+    });
 });
 
 /*
