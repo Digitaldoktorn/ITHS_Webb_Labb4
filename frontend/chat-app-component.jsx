@@ -32,12 +32,11 @@ class ChatAppComponent extends React.Component {
     //Function runs when exiting component, we can use this to toggle user as offline or see last time user signed in
     componentWillUnmount() {
         console.log('shutting down');
-    }change new
+    }
 
     //What will show up in the browser
     render() {
         return <div>
-<<<<<<< HEAD
             <h1>Izas updates</h1>
             <form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
@@ -50,10 +49,6 @@ class ChatAppComponent extends React.Component {
                     return <li key={user._id}>{user.name}</li>;
                 })}
             </ul>*/
-=======
-            <div class='display-window'></div>
-            <input></input><button>skicka</button>
->>>>>>> 63c264899799b1b7c6114a1a50012ec297b88f79
         </div>;
     }
 }
