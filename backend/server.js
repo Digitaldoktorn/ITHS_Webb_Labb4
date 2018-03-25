@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path'); // the path module makes it easier to use the static middleware
 var MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectID;
+//var ObjectId = require('mongodb').ObjectID;
 var app = express();
 var db;
 
@@ -78,7 +78,7 @@ app.put('/message', function (request, response){
     {},
     function (error, result) {
       db.collection('message').insertMany(request.body, function(){
-        response.send({});
+        response.send(result);
       });
     }
   );

@@ -43,12 +43,8 @@ class ChatAppComponent extends React.Component {
                 <div>
                     <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div><input type="submit" value="Submit" /></form>
 
-            /*<p>logged in as: {this.state.user}</p>
-            <ul>
-                {this.state.allUsers && this.state.allUsers.map(function(user){
-                    return <li key={user._id}>{user.name}</li>;
-                })}
-            </ul>*/
+
+
         </div>;
     }
 }
