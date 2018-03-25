@@ -20,13 +20,13 @@ class ChatAppComponent extends React.Component {
         fetch('/message').then(function (response) {
             return response.json();
         }).then(function (result) {
-            console.log('hello');
+            console.log(result);
         });
     }
 
     usernameChangeHandler(event) {
         this.setState({ username: event.target.value });
-      }
+    }
 
 
     usernameSubmitHandler(event) {event.preventDefault();
