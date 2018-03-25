@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 // GET-request. "find" is empty and will then get all objects in the collection. If you want to choose a certain object, enter the key/value pair within curly braces. "result" is the data that we get from the collection and what is presented in the browser after a fetch from frontend. (Module 11, exercise 4)
 
-// I forced error in Insomnia in order to see if the console log works. It didn't. I added 'message' in app.get. I added 'user' in the http requests below
+// I added 'user' in the http requests below
 app.get('/message', function(request, response){
   db.collection('message').find({}).toArray(function(error, result){
     if (error){
@@ -53,13 +53,21 @@ app.get('/user', function(request, response){
 // POST-request.
 app.post('/message', function (request, response){
   db.collection('message').insert(request.body, function (error, result){
-    response.send(result);
+    if (error) {
+      console.log(error);
+    } else {
+      response.send(result);
+    }
   });
 });
 
 app.post('/user', function (request, response){
   db.collection('user').insert(request.body, function (error, result){
-    response.send(result);
+    if (error) {
+      console.log(error);
+    } else {
+      response.send(result);
+    }
   });
 });
 
@@ -75,6 +83,7 @@ app.put('/message', function (request, response){
     }
   );
 });
+/*
 //BE CAREFULL HERE, THIS WILL DELETE ALL EXISTING USERS!
 app.put('/user', function (request, response){
   db.collection('user').remove(
@@ -86,8 +95,37 @@ app.put('/user', function (request, response){
     }
   );
 });
+*/
+// PUT-requests New - March 24!
+app.put('/user/:name', function (request, response) {
+  db.collection('user').update(
+    {name: request.params.name},
+    {$push: {friends: request.body}},
+    function (error, result) {
+      if(error) {
+        console.log(error);
+      } else {
+        response.send(result);
+      }
+    }
+  );
+});
+
+app.put('/confirm', function (request, response){
+  db.collection('user').update(
+    {name: request.query.name, 'friends.friendsname': request.query.name2},
+    {$set: {'friends.$.status': 'confirmed'}}, {multi: true},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      } else {
+        response.send(result);
+      }
+    });
+});
+
 /*
-// DELETE-request old- To delete an object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7).
+// DELETE-request (old) - To delete an object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7).
 app.delete('/:id', function (request, response) {
   db.collection('message').remove(
     { _id: new ObjectId(request.params.id) },
@@ -96,8 +134,18 @@ app.delete('/:id', function (request, response) {
     }
   );
 });
+
+app.delete('/:id', function (request, response) {
+  db.collection('user').remove(
+    { _id: new ObjectId(request.params.id) },
+    function(error, result) {
+      response.send({});
+    }
+  );
+});
 */
-// DELETE-request new - doesn't work!
+
+// DELETE-request-deletes the whole collection!
 app.delete('/message', function (request, response) {
   db.collection('message').remove({}, function (error) {
     if (error) {

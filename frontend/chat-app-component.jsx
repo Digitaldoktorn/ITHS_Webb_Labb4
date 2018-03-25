@@ -6,7 +6,7 @@ class ChatAppComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: 'user1'
+            user: ''
         };
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
@@ -17,12 +17,11 @@ class ChatAppComponent extends React.Component {
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
-        fetch('/user').then(function (response) {
+        fetch('/message').then(function (response) {
             return response.json();
         }).then(function (result) {
             console.log(result);
-            this.setState({allUsers: result});
-        }.bind(this));
+        });
     }
 
     usernameChangeHandler(event) {
@@ -38,6 +37,7 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
+<<<<<<< HEAD
             <h1>Izas updates</h1>
             <form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
@@ -50,6 +50,10 @@ class ChatAppComponent extends React.Component {
                     return <li key={user._id}>{user.name}</li>;
                 })}
             </ul>*/
+=======
+            <div class='display-window'></div>
+            <input></input><button>skicka</button>
+>>>>>>> 63c264899799b1b7c6114a1a50012ec297b88f79
         </div>;
     }
 }
