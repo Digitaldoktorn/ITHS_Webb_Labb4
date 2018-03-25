@@ -7,7 +7,7 @@ class ChatAppComponent extends React.Component {
         super();
         this.state = {
             user: ''
-        };
+        }
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
     }
@@ -34,22 +34,18 @@ class ChatAppComponent extends React.Component {
         console.log('shutting down');
     }
 
-    //What will show up in the browser
-    render() {
-        return <div>
-            <h1>Izas updates</h1>
-            <form onSubmit={this.usernameSubmitHandler} className="username-container">
+	//What will show up in the browser
+	render() {
+		return <div>
+			<h1>ChatApp!</h1>
+			<form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
                 <div>
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div><input type="submit" value="Submit" /></form>
-
-            /*<p>logged in as: {this.state.user}</p>
-            <ul>
-                {this.state.allUsers && this.state.allUsers.map(function(user){
-                    return <li key={user._id}>{user.name}</li>;
-                })}
-            </ul>*/
-        </div>;
+                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
     }
 }
 
