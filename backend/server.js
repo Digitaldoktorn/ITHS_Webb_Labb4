@@ -120,5 +120,5 @@ app.delete('/user', function (request, response) {
 
 
 app.listen(3000, function(){
-  console.log('The service is running!');
+  console.log('The service is running! izA');
 });
