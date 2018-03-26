@@ -91,6 +91,17 @@ class ChatAppComponent extends React.Component {
             </div>
         </div>;
     }
+
+    // Anders kod - kollas
+    <div class='users'>
+      <ul>
+        {this.state.users !== undefined &&
+          this.state.users.map(function(users){
+            return <li key={user._id} onClick={this.friendRequest.bind(this, user)}>{user.name}</li>;
+          }.bind(this))
+        }
+      </ul>
+    </div>
 }
 ///använd this.state.user för att skriva ut om det är du som skrivit meddelande
 //make compone;nt available for import
