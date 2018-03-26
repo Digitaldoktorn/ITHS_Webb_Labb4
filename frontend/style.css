@@ -4,5 +4,14 @@ body{
 }
 
 .all-messages {
-    
+    width: 500px;
+    height: 500px;
+    overflow-y: scroll;
+    background-color: teal;
+}
+
+.all-messages p {
+    color: white;
+    font-size: 1.5em;
+    padding-left: 1em;
 }

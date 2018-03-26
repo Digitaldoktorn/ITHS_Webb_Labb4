@@ -8,6 +8,7 @@ class ChatAppComponent extends React.Component {
         this.state = {
             user: '',
             msg: '',
+            friend: '',
             allMessages: []
 
         };
@@ -31,7 +32,6 @@ class ChatAppComponent extends React.Component {
             method: 'POST'
         });
     }
-
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
@@ -80,18 +80,18 @@ class ChatAppComponent extends React.Component {
             </div>
             <div>
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
-                    return <p>{message.msg}</p>;
+                    return <p><span></span>{message.msg}</p>;
                 })}</div>
-                <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyDown={function(e) {
+                <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyPress={function(e) {
                     if (e.key === 'Enter'){
-                        console.log('enter');
+                        this.sendMsg();
                     }
-                }}/>
+                }.bind(this)}/>
                 <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
         </div>;
     }
 }
-
+///använd this.state.user för att skriva ut om det är du som skrivit meddelande
 //make compone;nt available for import
 module.exports = ChatAppComponent;
