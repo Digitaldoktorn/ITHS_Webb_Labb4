@@ -21,7 +21,7 @@ body{
     padding-left: 1em;
 }
 
-input {
+.textbox {
     height: 2rem;
     font-size: 1.2rem;
 }
