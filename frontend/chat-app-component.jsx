@@ -21,6 +21,7 @@ class ChatAppComponent extends React.Component {
         this.emailConfChangeHandler = this.usernameSubmitHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
+        this.submitSignUp = this.submitSignUp.bind(this);
         this.saveMsg = this.saveMsg.bind(this);
         this.sendMsg = this.sendMsg.bind(this);
     }
@@ -59,11 +60,13 @@ class ChatAppComponent extends React.Component {
             }).then(function (result) {
                 return result;
             });
-        }.bind(this), 500);
+        }.bind(this), 300);
+
+    }
 
         submitLogin() {
-            console.log(this.state.username, this.state.password);
-        }
+        console.log(this.state.username, this.state.password);
+    }
 
         submitSignUp(){
             console.log(this.state.username, this.state.password, this.state.passwordConf, this.state.email, this.state.emailConf);
@@ -91,7 +94,7 @@ class ChatAppComponent extends React.Component {
 
         usernameSubmitHandler(event) {event.preventDefault();
             this.setState({ submitted: true, username: this.state.username });}
-    }
+
 
 
     //Function runs when exiting component, we can use this to toggle user as offline or see last time user signed in
@@ -101,24 +104,18 @@ class ChatAppComponent extends React.Component {
 
     //What will show up in the browser
     render() {
-        return
-        <div>
+        return <div>
           <div id={this.state.login}>
             <h1>Izas updates</h1>
             <form className="username-container">
                 <h1>Log in</h1>
                 <div>
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div>
+                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                </div>
                 <div>
                     <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
 
-                      fetch('/user').then(function (response) {
-                          return response.json();
-                      }).then(function (result) {
-                          console.log(result);
-                          response.send({"name": result} === {this.state.username} ? )
-
-                <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
+                <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin)}.bind(this)}>Log in</button></form>
 
             <p>Don't have an account?</p>
             <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
