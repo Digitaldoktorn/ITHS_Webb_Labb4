@@ -23,6 +23,10 @@
 
         "no-console": "off",
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e07cb1a114bf546ea83791b7a403f74e6bba1fbc
         "linebreak-style": "off",
 
         "quotes": [
