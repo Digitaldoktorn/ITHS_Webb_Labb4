@@ -80,9 +80,14 @@ class ChatAppComponent extends React.Component {
             </div>
             <div>
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
-                    return <p>{message.msg}</p>
+                    return <p>{message.msg}</p>;
                 })}</div>
-                <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button type="submit" onClick={this.sendMsg}>Send</button>
+                <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyDown={function(e) {
+                    if (e.key === 'Enter'){
+                        console.log('enter');
+                    }
+                }}/>
+                <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
         </div>;
     }
