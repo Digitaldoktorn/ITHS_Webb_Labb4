@@ -2,7 +2,7 @@ var React = require('react');
 require('./style.css');
 
 class ChatAppComponent extends React.Component {
-//building component, setting initial state 'user', possible to bind functions from here
+    //building component, setting initial state 'user', possible to bind functions from here
     constructor() {
         super();
         this.state = {
@@ -33,48 +33,80 @@ class ChatAppComponent extends React.Component {
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
-        fetch('/message').then(function (response) {
-            return response.json();
-        }).then(function (result) {
-            console.log(result);
+        // Checks if there are any new friend requests every second.
+        setInterval(function(){
+            var user1 = this.state.users.filter(function(user){
+                return user.name === this.state.user;
+            }.bind(this));
+
+            fetch('/message').then(function (response) {
+                return response.json();
+            }).then(function (result) {
+                console.log(result);
+            });
+
+            fetch('/user').then(function (response) {
+                return response.json();
+            }).then(function (result) {
+                this.setState({users: result});
+            }.bind(this));
+
+        }.bind(this), 1000);
+    }
+
+    reqFind(){
+        if (user1.length > 0 && user1[0].friends){
+            var friendrequests = x[0].friends.map(function(value){
+                return Object.entries(value);
+            }).filter(function(count){
+                if(count.length == 2){
+                    return count[1][1] === 'pending';
+                }
+            });
+        }
+        this.setState({req: friendrequests}, this.findFriends);
+    }
+
+
+    confirmFriend(req){ // recieves the object
+        this.setState({showReq: 'hide-req' });
+        fetch('/confirm?name='+ this.state.user +'&name2=' + req[0][1], {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
+        });
+
+        fetch('/confirm?name='+ req[0][1] +'&name2=' + this.state.user, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
         });
     }
-    // Anders kod-kollas
-    componentDidMount2(){
 
-        fetch('/user').then(function (response) {
-            return response.json();
-        }).then(function (result) {
-          this.setState({users: result});
-        }.bind(this));
-        }
-
-    // Anders kod - kollas
+    // Updating statuses of friend requests
     friendRequest(user){
-      fetch('/user' + this.state.user, {
-        body:'{"name":} "' + user.name + '", "status": "sent"}',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'PUT'
-      });
+        fetch('/user' + this.state.user, {
+            body:'{"name":} "' + user.name + '", "status": "sent"}',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
+        });
 
-      fetch('/user/' + user.name, {
-        body: '{"name": "' + this.state.user + '", "status": "pending"}',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'PUT'
-      });
+        fetch('/user/' + user.name, {
+            body: '{"name": "' + this.state.user + '", "status": "pending"}',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
+        });
     }
-
-
-
 
     usernameChangeHandler(event) {
         this.setState({ username: event.target.value });
     }
-
 
     usernameSubmitHandler(event) {event.preventDefault();
         this.setState({ submitted: true, username: this.state.username });}
@@ -98,19 +130,23 @@ class ChatAppComponent extends React.Component {
             <div>
                 <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
             </div>
+
+            // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
+            <div class='users'>
+                <ul>
+                    {this.state.users !== undefined &&
+              this.state.users.map(function(users){
+                  return <li key={user._id} onClick={this.friendRequest.bind(this, user)}>{user.name}</li>;
+              }.bind(this))
+                    }
+                </ul>
+            </div>
+
+
         </div>;
     }
 
-    // Anders kod - kollas
-    <div class='users'>
-      <ul>
-        {this.state.users !== undefined &&
-          this.state.users.map(function(users){
-            return <li key={user._id} onClick={this.friendRequest.bind(this, user)}>{user.name}</li>;
-          }.bind(this))
-        }
-      </ul>
-    </div>
+
 }
 
 //make compone;nt available for import
