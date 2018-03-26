@@ -6,14 +6,30 @@ class ChatAppComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: ''
+            user: '',
+            msg: ''
         };
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
+        this.saveMsg = this.saveMsg.bind(this);
+        this.sendMsg = this.sendMsg.bind(this);
     }
 
     //here we can add all our other functions
+    saveMsg(event) {
+        this.setState({msg: event.target.value});
+    }
 
+    sendMsg() {
+        console.log(this.state.msg);
+        fetch('/message', {
+            body: '{"msg": "' + this.state.msg + '"}',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        });
+    }
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
@@ -23,6 +39,8 @@ class ChatAppComponent extends React.Component {
             console.log(result);
         });
     }
+
+
 
     usernameChangeHandler(event) {
         this.setState({ username: event.target.value });
@@ -40,17 +58,27 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
-            <h1>Izas updates</h1>
+            <h1>ChatApp!</h1>
             <form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
                 <div>
+<<<<<<< HEAD
                     <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div><input type="submit" value="Submit" /></form>
 
 
 
+=======
+                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+            <div>
+                <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
+            </div>
+>>>>>>> 7f6c5f168c367866bee954249a82f8b636bd98bf
         </div>;
     }
 }
 
-//make component available for import
+//make compone;nt available for import
 module.exports = ChatAppComponent;
