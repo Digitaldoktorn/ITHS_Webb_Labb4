@@ -3,15 +3,25 @@ body{
   background-color: grey;
 }
 
+#app {
+    margin-left: 1em;
+}
+
 .all-messages {
     width: 500px;
     height: 500px;
     overflow-y: scroll;
     background-color: teal;
+
 }
 
 .all-messages p {
     color: white;
     font-size: 1.5em;
     padding-left: 1em;
+}
+
+input {
+    height: 2rem;
+    font-size: 1.2rem;
 }

@@ -31,7 +31,10 @@ class ChatAppComponent extends React.Component {
             },
             method: 'POST'
         });
+        this.setState({msg: ''});
     }
+
+
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
@@ -41,15 +44,18 @@ class ChatAppComponent extends React.Component {
                 return response.json();
             }).then(function (result) {
                 this.setState({allMessages: result});
+                document.getElementsByClassName('all-messages')[0].scrollTop = document.getElementsByClassName('all-messages')[0].scrollHeight;
             }.bind(this));
 
             fetch('/user').then(function (response) {
                 return response.json();
             }).then(function (result) {
-                console.log(result);
+                return result;
             });
         }.bind(this), 500);
     }
+
+
 
 
     usernameChangeHandler(event) {
@@ -90,8 +96,10 @@ class ChatAppComponent extends React.Component {
                 <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
         </div>;
-
-    // Anders kod - kollas
+    }
+}
+// Anders kod - kollas
+/*
     <div class='users'>
       <ul>
         {this.state.users !== undefined &&
@@ -101,7 +109,7 @@ class ChatAppComponent extends React.Component {
         }
       </ul>
     </div>
-}
+*/
 ///använd this.state.user för att skriva ut om det är du som skrivit meddelande
 //make compone;nt available for import
 module.exports = ChatAppComponent;
