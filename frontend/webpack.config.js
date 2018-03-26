@@ -10,7 +10,7 @@ module.exports = {
                 loader: 'eslint-loader'
             },
             {
-                test: /\.js$/,
+
                 loader: 'babel-loader',
                 query: {
                     presets: ['env']

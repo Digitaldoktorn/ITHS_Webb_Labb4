@@ -23,10 +23,15 @@
 
         "no-console": "off",
 
+<<<<<<< HEAD
+        "linebreak-style": "off",
+
+=======
         "linebreak-style": [
             "error",
             "unix"
         ],
+>>>>>>> 7f6c5f168c367866bee954249a82f8b636bd98bf
         "quotes": [
             "error",
             "single"
