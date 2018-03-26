@@ -22,6 +22,35 @@ class ChatAppComponent extends React.Component {
             console.log(result);
         });
     }
+    // Anders kod-kollas
+    componentDidMount2(){
+
+        fetch('/user').then(function (response) {
+            return response.json();
+        }).then(function (result) {
+          this.setState({users: result});
+        }.bind(this));
+        }
+
+    // Anders kod - kollas
+    friendRequest(user){
+      fetch('/user' + this.state.user, {
+        body:'{"name":} "' + user.name + '", "status": "sent"}',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+      });
+
+      fetch('/user/' + user.name, {
+        body: '{"name": "' + this.state.user + '", "status": "pending"}',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+      });
+    }
+
 
     //Function runs when exiting component, we can use this to toggle user as offline or see last time user signed in
     componentWillUnmount() {
@@ -35,6 +64,17 @@ class ChatAppComponent extends React.Component {
             <input></input><button>skicka</button>
         </div>;
     }
+
+    // Anders kod - kollas
+    <div class='users'>
+      <ul>
+        {this.state.users !== undefined &&
+          this.state.users.map(function(users){
+            return <li key={user._id} onClick={this.friendRequest.bind(this, user)}>{user.name}</li>;
+          }.bind(this))
+        }
+      </ul>
+    </div>
 }
 
 //make component available for import
