@@ -7,14 +7,15 @@ class ChatAppComponent extends React.Component {
         super();
         this.state = {
             user: '',
-            msg: ''
+            msg: '',
+            allMessages: []
+
         };
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
         this.saveMsg = this.saveMsg.bind(this);
         this.sendMsg = this.sendMsg.bind(this);
     }
-
     //here we can add all our other functions
     saveMsg(event) {
         this.setState({msg: event.target.value});
@@ -30,45 +31,25 @@ class ChatAppComponent extends React.Component {
             method: 'POST'
         });
     }
+
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
-        fetch('/message').then(function (response) {
-            return response.json();
-        }).then(function (result) {
-            console.log(result);
-        });
+        setInterval(function(){
+
+            fetch('/message').then(function (response) {
+                return response.json();
+            }).then(function (result) {
+                this.setState({allMessages: result});
+            }.bind(this));
+
+            fetch('/user').then(function (response) {
+                return response.json();
+            }).then(function (result) {
+                console.log(result);
+            });
+        }.bind(this), 500);
     }
-    // Anders kod-kollas
-    componentDidMount2(){
-
-        fetch('/user').then(function (response) {
-            return response.json();
-        }).then(function (result) {
-          this.setState({users: result});
-        }.bind(this));
-        }
-
-    // Anders kod - kollas
-    friendRequest(user){
-      fetch('/user' + this.state.user, {
-        body:'{"name":} "' + user.name + '", "status": "sent"}',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'PUT'
-      });
-
-      fetch('/user/' + user.name, {
-        body: '{"name": "' + this.state.user + '", "status": "pending"}',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'PUT'
-      });
-    }
-
-
 
 
     usernameChangeHandler(event) {
@@ -88,15 +69,20 @@ class ChatAppComponent extends React.Component {
     render() {
         return <div>
             <h1>ChatApp!</h1>
-            <form onSubmit={this.usernameSubmitHandler} className="username-container">
-                <h1>React Instant Chat</h1>
-                <div>
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
-                </div>
-                <input type="submit" value="Submit" />
-            </form>
+            <div className="login-pop">
+                <form onSubmit={this.usernameSubmitHandler} className="username-container">
+                    <h1>React Instant Chat</h1>
+                    <div>
+                        <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                    </div>
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
             <div>
-                <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
+                <div className="all-messages">{this.state.allMessages.map(function(message) {
+                    return <p>{message.msg}</p>
+                })}</div>
+                <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
         </div>;
     }
