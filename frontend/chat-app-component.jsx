@@ -161,7 +161,8 @@ class ChatAppComponent extends React.Component {
                 }.bind(this)}/>
                 <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
-        </div>;
+        </div>
+    </div>;
     }
 }
 // Anders kod - kollas
