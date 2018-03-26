@@ -62,12 +62,6 @@ class ChatAppComponent extends React.Component {
             <form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
                 <div>
-<<<<<<< HEAD
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div><input type="submit" value="Submit" /></form>
-
-
-
-=======
                     <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
                 </div>
                 <input type="submit" value="Submit" />
@@ -75,7 +69,6 @@ class ChatAppComponent extends React.Component {
             <div>
                 <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
             </div>
->>>>>>> 7f6c5f168c367866bee954249a82f8b636bd98bf
         </div>;
     }
 }
