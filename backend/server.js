@@ -106,7 +106,7 @@ app.put('/user', function (request, response){
   );
 });
 */
-// PUT-requests New - March 24!
+// PUT-request: Add friends
 app.put('/user/:name', function (request, response) {
   db.collection('user').update(
     {name: request.params.name}, // se Insomnia http://localhost:3000/user/user1
@@ -121,6 +121,7 @@ app.put('/user/:name', function (request, response) {
   );
 });
 
+// PUT-request: Confirm friend requests
 app.put('/confirm', function (request, response){
   console.log(request.query.name, request.query.name2);
   db.collection('user').update(
