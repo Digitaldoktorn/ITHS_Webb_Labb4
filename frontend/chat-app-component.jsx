@@ -106,7 +106,8 @@ class ChatAppComponent extends React.Component {
     render() {
         return <div>
           <div id={this.state.login}>
-            <h1>Izas updates</h1>
+            <h1>Welcome to ChatApp!</h1>
+            <h2>The unversal chat, for you!</h2>
             <form className="username-container">
                 <h1>Log in</h1>
                 <div className="login">
@@ -136,7 +137,7 @@ class ChatAppComponent extends React.Component {
                     <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
                 <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
         </div>
-        <div>
+        <div id="window">
             <h1>ChatApp!</h1>
             <div className="login-pop">
                 <form onSubmit={this.usernameSubmitHandler} className="username-container">

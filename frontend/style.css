@@ -1,6 +1,6 @@
 body{
   margin: 0;
-  background-color: grey;
+  background-color: white;
 }
 
 
@@ -12,7 +12,7 @@ body{
     width: 500px;
     height: 500px;
     overflow-y: scroll;
-    background-color: teal;
+    background-color: lightblue;
 
 }
 
@@ -28,9 +28,17 @@ body{
 }
 
 .username-container {
-    background-color: teal;
+    background-color: lightblue;
+    color: white;
     width: 500px;
     margin: 1em;
     padding: 1em;
     text-align: center;
+}
+
+button, input[type=submit] {
+    background-color: teal;
+    border-radius: 1px;
+    font-size: 24px;
+    margin: 1em;
 }
