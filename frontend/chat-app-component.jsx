@@ -119,7 +119,7 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
-<<<<<<< HEAD
+
           <div id={this.state.login}>
             <h1>Izas updates</h1>
             <form className="username-container">
@@ -162,7 +162,7 @@ class ChatAppComponent extends React.Component {
                     <input type="submit" value="Submit" />
                 </form>
             </div>
-=======
+
             <h1>ChatApp!</h1>
             <form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
@@ -171,7 +171,7 @@ class ChatAppComponent extends React.Component {
                 </div>
                 <input type="submit" value="Submit" />
             </form>
->>>>>>> 937dae84e8581dcc517a41cef710ff26b5684319
+
             <div>
                 <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
             </div>
