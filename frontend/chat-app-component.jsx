@@ -12,7 +12,35 @@ class ChatAppComponent extends React.Component {
             allMessages: [],
             loginScreen: 'show',
             login: 'login',
-            register: 'register'
+            register: 'register',
+            users: [ 	{
+	'_id': '5ab63f64d26c7b053ed879df',
+	'name': 'user1',
+	'password': 'abcd',
+	'checkout': 'true',
+	'friends': [
+		{
+			'friendsname': 'user2',
+			'status': 'confirmed'
+		},
+		{
+			'friendsname': 'user3',
+			'status': 'pending'
+		},
+		{
+			'friendname': 'edvin',
+			'status': 'pending'
+		},
+		{
+			'friendsname': 'edvin',
+			'status': 'pending'
+		},
+		{
+			'friendsname': 'edvin',
+			'status': 'pending'
+		}
+	]
+}]
         };
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
@@ -159,17 +187,17 @@ class ChatAppComponent extends React.Component {
                 <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
 
-            { /*   // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
+            {    // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
 
                 <div class='users'>
                 <ul>
                     {this.state.users !== undefined &&
-              this.state.users.map(function(users){
+              this.state.users.map(function(user){
                   return <li key={user._id} onClick={this.friendRequest.bind(this, user)}>{user.name}</li>;
               }.bind(this))
                     }
                 </ul>
-            </div>*/}
+            </div>}
         </div>;
     }
 }
