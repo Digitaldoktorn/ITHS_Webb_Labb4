@@ -50,6 +50,16 @@ app.get('/user', function(request, response){
   });
 });
 
+app.get('/user', function(request, response){
+  db.collection('user').find({name:request.params.user}).toArray(function(error, result){
+    if (error){
+      console.log(error);
+    } else {
+      response.send(result);
+    }
+  });
+});
+
 // POST-request.
 app.post('/message', function (request, response){
   db.collection('message').insert(request.body, function (error, result){
@@ -96,10 +106,10 @@ app.put('/user', function (request, response){
   );
 });
 */
-// PUT-requests New - March 24!
+// PUT-request: Add friends
 app.put('/user/:name', function (request, response) {
   db.collection('user').update(
-    {name: request.params.name},
+    {name: request.params.name}, // se Insomnia http://localhost:3000/user/user1
     {$push: {friends: request.body}},
     function (error, result) {
       if(error) {
@@ -111,10 +121,12 @@ app.put('/user/:name', function (request, response) {
   );
 });
 
+// PUT-request: Confirm friend requests
 app.put('/confirm', function (request, response){
+  console.log(request.query.name, request.query.name2);
   db.collection('user').update(
-    {name: request.query.name, 'friends.friendsname': request.query.name2},
-    {$set: {'friends.$.status': 'confirmed'}}, {multi: true},
+    {name: request.query.name, 'friends.friendsname' : request.query.name2},
+    {$set: {'friends.$.status': 'confirmed'}},
     function (error, result) {
       if (error) {
         console.log(error);
