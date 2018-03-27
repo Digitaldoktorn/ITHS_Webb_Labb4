@@ -105,13 +105,6 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
-=======
->>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
           <div id={this.state.login}>
             <h1>Izas updates</h1>
             <form className="username-container">
@@ -155,22 +148,6 @@ class ChatAppComponent extends React.Component {
                 </form>
             </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <h1>ChatApp!</h1>
-            <form onSubmit={this.usernameSubmitHandler} className="username-container">
-                <h1>React Instant Chat</h1>
-                <div>
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
-                </div>
-                <input type="submit" value="Submit" />
-            </form>
-
-            <div>
-                <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
-=======
-=======
->>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
                     return <p><span></span>{message.msg}</p>;
                 })}</div>
@@ -180,10 +157,6 @@ class ChatAppComponent extends React.Component {
                     }
                 }.bind(this)}/>
                 <button type="submit" onClick={this.sendMsg}>Send</button>
-<<<<<<< HEAD
->>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
-=======
->>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
             </div>
 
             { /*   // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
