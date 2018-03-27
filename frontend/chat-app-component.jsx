@@ -158,8 +158,10 @@ class ChatAppComponent extends React.Component {
                 }.bind(this)}/>
                 <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
-            // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
-            {/*    <div class='users'>
+
+            { /*   // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
+
+                <div class='users'>
                 <ul>
                     {this.state.users !== undefined &&
               this.state.users.map(function(users){
