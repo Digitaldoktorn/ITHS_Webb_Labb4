@@ -2,19 +2,29 @@ var React = require('react');
 require('./style.css');
 
 class ChatAppComponent extends React.Component {
-    //building component, setting initial state 'user', possible to bind functions from here
+//building component, setting initial state 'user', possible to bind functions from here
     constructor() {
         super();
         this.state = {
             user: '',
-            msg: ''
+            msg: '',
+            friend: '',
+            allMessages: [],
+            loginScreen: 'show',
+            login: 'login',
+            register: 'register'
         };
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
+        this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
+        this.passwordConfChangeHandler = this.usernameSubmitHandler.bind(this);
+        this.emailChangeHandler = this.usernameSubmitHandler.bind(this);
+        this.emailConfChangeHandler = this.usernameSubmitHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
+        this.submitLogin = this.submitLogin.bind(this);
+        this.submitSignUp = this.submitSignUp.bind(this);
         this.saveMsg = this.saveMsg.bind(this);
         this.sendMsg = this.sendMsg.bind(this);
     }
-
     //here we can add all our other functions
     saveMsg(event) {
         this.setState({msg: event.target.value});
@@ -29,87 +39,63 @@ class ChatAppComponent extends React.Component {
             },
             method: 'POST'
         });
+        this.setState({msg: ''});
     }
+
+
     //Good place to load data from database that will be avaliable when component has loaded. Note! render will run once before this function, so you might need to either set initial state or make the render conditional!
     componentDidMount(){
 
-        // Checks if there are any new friend requests every second.
         setInterval(function(){
-            var user1 = this.state.users.filter(function(user){
-                return user.name === this.state.user;
-            }.bind(this));
 
             fetch('/message').then(function (response) {
                 return response.json();
             }).then(function (result) {
-                console.log(result);
-            });
+                this.setState({allMessages: result});
+                document.getElementsByClassName('all-messages')[0].scrollTop = document.getElementsByClassName('all-messages')[0].scrollHeight;
+            }.bind(this));
 
             fetch('/user').then(function (response) {
                 return response.json();
             }).then(function (result) {
-                this.setState({users: result});
-            }.bind(this));
-
-        }.bind(this), 1000);
-    }
-
-    reqFind(){
-        if (user1.length > 0 && user1[0].friends){
-            var friendrequests = x[0].friends.map(function(value){
-                return Object.entries(value);
-            }).filter(function(count){
-                if(count.length == 2){
-                    return count[1][1] === 'pending';
-                }
+                return result;
             });
+        }.bind(this), 300);
+
+    }
+
+        submitLogin() {
+        console.log(this.state.username, this.state.password);
+    }
+
+        submitSignUp(){
+            console.log(this.state.username, this.state.password, this.state.passwordConf, this.state.email, this.state.emailConf);
         }
-        this.setState({req: friendrequests}, this.findFriends);
-    }
+
+        usernameChangeHandler(event) {
+            this.setState({ username: event.target.value });
+        }
+
+        passwordChangeHandler(e) {
+            this.setState({ password: e.target.value });
+        }
+
+        passwordConfChangeHandler(event) {
+            this.setState({ passwordConf: event.target.value });
+        }
+
+        emailChangeHandler(event) {
+            this.setState({ email: event.target.value });
+        }
+
+        emailConfChangeHandler(event) {
+            this.setState({ emailConf: event.target.value });
+        }
+
+        usernameSubmitHandler(event) {event.preventDefault();
+            this.setState({ submitted: true, username: this.state.username });}
 
 
-    confirmFriend(req){ // recieves the object
-        this.setState({showReq: 'hide-req' });
-        fetch('/confirm?name='+ this.state.user +'&name2=' + req[0][1], {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT'
-        });
-
-        fetch('/confirm?name='+ req[0][1] +'&name2=' + this.state.user, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT'
-        });
-    }
-
-    // Updating statuses of friend requests
-    friendRequest(user){
-        fetch('/user' + this.state.user, {
-            body:'{"name":} "' + user.name + '", "status": "sent"}',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT'
-        });
-
-        fetch('/user/' + user.name, {
-            body: '{"name": "' + this.state.user + '", "status": "pending"}',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT'
-        });
-    }
-
-    usernameChangeHandler(event) {
-        this.setState({ username: event.target.value });
-    }
-
-    usernameSubmitHandler(event) {event.preventDefault();
-        this.setState({ submitted: true, username: this.state.username });}
 
     //Function runs when exiting component, we can use this to toggle user as offline or see last time user signed in
     componentWillUnmount() {
@@ -119,7 +105,10 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
           <div id={this.state.login}>
             <h1>Izas updates</h1>
             <form className="username-container">
@@ -163,6 +152,7 @@ class ChatAppComponent extends React.Component {
                 </form>
             </div>
 
+<<<<<<< HEAD
             <h1>ChatApp!</h1>
             <form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
@@ -174,10 +164,22 @@ class ChatAppComponent extends React.Component {
 
             <div>
                 <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
+=======
+                <div className="all-messages">{this.state.allMessages.map(function(message) {
+                    return <p><span></span>{message.msg}</p>;
+                })}</div>
+                <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyPress={function(e) {
+                    if (e.key === 'Enter'){
+                        this.sendMsg();
+                    }
+                }.bind(this)}/>
+                <button type="submit" onClick={this.sendMsg}>Send</button>
+>>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
             </div>
 
-            // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
-            <div class='users'>
+            { /*   // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
+
+                <div class='users'>
                 <ul>
                     {this.state.users !== undefined &&
               this.state.users.map(function(users){
@@ -185,14 +187,11 @@ class ChatAppComponent extends React.Component {
               }.bind(this))
                     }
                 </ul>
-            </div>
-
-
+            </div>*/}
         </div>;
     }
-
-
 }
-
+//make compone;nt available for import
+///använd this.state.user för att skriva ut om det är du som skrivit meddelande
 //make compone;nt available for import
 module.exports = ChatAppComponent;
