@@ -106,7 +106,10 @@ class ChatAppComponent extends React.Component {
     render() {
         return <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
 =======
 >>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
           <div id={this.state.login}>
@@ -153,6 +156,7 @@ class ChatAppComponent extends React.Component {
             </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             <h1>ChatApp!</h1>
             <form onSubmit={this.usernameSubmitHandler} className="username-container">
                 <h1>React Instant Chat</h1>
@@ -165,6 +169,8 @@ class ChatAppComponent extends React.Component {
             <div>
                 <input className="textrutan" type="text" value={this.state.msg} onChange={this.saveMsg}></input><button onClick={this.sendMsg}>Send</button>
 =======
+=======
+>>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
                     return <p><span></span>{message.msg}</p>;
                 })}</div>
@@ -174,6 +180,9 @@ class ChatAppComponent extends React.Component {
                     }
                 }.bind(this)}/>
                 <button type="submit" onClick={this.sendMsg}>Send</button>
+<<<<<<< HEAD
+>>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
+=======
 >>>>>>> a3239ebb350c12e760bc7bf7bdd9afed11b26c1d
             </div>
 
