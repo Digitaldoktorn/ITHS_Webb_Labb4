@@ -158,7 +158,7 @@ app.delete('/:id', function (request, response) {
 */
 
 // DELETE-request-deletes the whole collection!
-app.delete('/message', function (request, response) {
+app.delete('/:id', function (request, response) {
   db.collection('message').remove({}, function (error) {
     if (error) {
       console.log(error);
