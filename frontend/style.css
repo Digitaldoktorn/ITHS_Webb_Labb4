@@ -25,3 +25,11 @@ body{
     height: 2rem;
     font-size: 1.2rem;
 }
+
+.username-container {
+    background-color: teal;
+    width: 500px;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+}

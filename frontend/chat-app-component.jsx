@@ -30,7 +30,7 @@ class ChatAppComponent extends React.Component {
         this.setState({msg: event.target.value});
     }
 
-    sendMsg() {
+    sendMsg() {    // from:   to:
         console.log(this.state.msg);
         fetch('/message', {
             body: '{"msg": "' + this.state.msg + '"}',
@@ -109,13 +109,13 @@ class ChatAppComponent extends React.Component {
             <h1>Izas updates</h1>
             <form className="username-container">
                 <h1>Log in</h1>
-                <div>
+                <div className="login">
                     <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
                 </div>
                 <div>
                     <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
 
-                <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin)}.bind(this)}>Log in</button></form>
+                <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
 
             <p>Don't have an account?</p>
             <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
