@@ -1,5 +1,6 @@
 body{
   margin: 0;
+<<<<<<< HEAD
   background-color: grey;
 
 }
@@ -30,4 +31,51 @@ body{
 
 #none {
   display: none;
+=======
+  background-color: white;
+}
+
+
+#app {
+    margin-left: 1em;
+}
+
+.all-messages {
+    width: 500px;
+    height: 500px;
+    overflow-y: scroll;
+    background-color: lightblue;
+
+}
+
+#register {
+    display: 
+}
+
+.all-messages p {
+    color: white;
+    font-size: 1.5em;
+    padding-left: 1em;
+}
+
+.textbox {
+    height: 2rem;
+    font-size: 1.2rem;
+}
+
+.username-container {
+    background-color: lightblue;
+    color: white;
+    width: 500px;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+}
+
+button, input[type=submit] {
+    background-color: teal;
+    border-radius: 1px;
+    font-size: 24px;
+    margin: 1em;
+>>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
 }
