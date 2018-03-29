@@ -1,4 +1,5 @@
 var React = require('react');
+var emoji = require('react-easy-emoji');
 
 require('./style.css');
 
@@ -63,12 +64,6 @@ class ChatAppComponent extends React.Component {
             });
         }.bind(this), 300);
 
-        fetch('https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json').then(function (response) {
-            return response.json();
-        }).then(function (result) {
-            this.setState({ emojis: result});
-        }.bind(this));
-
     }
 
     submitLogin() {
@@ -111,7 +106,6 @@ class ChatAppComponent extends React.Component {
 
     //What will show up in the browser
     render() {
-        this.state.emojis && console.log(Object.values(this.state.emojis));
         return <div>
             <div id={this.state.login}>
                 <h1>Izas updates</h1>
@@ -159,6 +153,7 @@ class ChatAppComponent extends React.Component {
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
                     return <p><span></span>{message.msg}</p>;
                 })}</div>
+              
                 <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyPress={function(e) {
                     if (e.key === 'Enter'){
                         this.sendMsg();
