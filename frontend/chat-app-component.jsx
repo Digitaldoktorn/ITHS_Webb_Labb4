@@ -14,7 +14,35 @@ class ChatAppComponent extends React.Component {
             allMessages: [],
             loginScreen: 'show',
             login: 'login',
-            register: 'register'
+            register: 'register',
+            users: [ 	{
+	'_id': '5ab63f64d26c7b053ed879df',
+	'name': 'user1',
+	'password': 'abcd',
+	'checkout': 'true',
+	'friends': [
+		{
+			'friendsname': 'user2',
+			'status': 'confirmed'
+		},
+		{
+			'friendsname': 'user3',
+			'status': 'pending'
+		},
+		{
+			'friendname': 'edvin',
+			'status': 'pending'
+		},
+		{
+			'friendsname': 'edvin',
+			'status': 'pending'
+		},
+		{
+			'friendsname': 'edvin',
+			'status': 'pending'
+		}
+	]
+}]
         };
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
@@ -107,11 +135,52 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
+<<<<<<< HEAD
             <div id={this.state.login}>
                 <h1>Izas updates</h1>
                 <form className="username-container">
                     <h1>Log in</h1>
                     <div className="login">
+=======
+          <div id={this.state.login}>
+            <h1>Welcome to ChatApp!</h1>
+            <h2>The unversal chat, for you!</h2>
+            <form className="username-container">
+                <h1>Log in</h1>
+                <div className="login">
+                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                </div>
+                <div>
+                    <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
+
+                <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
+
+            <p>Don't have an account?</p>
+            <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
+        </div>
+
+        <div id={this.state.register}>
+            <form className="username-container">
+                <h1>Register</h1>
+                <div>
+                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div>
+                <div>
+                    <input type="email" onChange={this.emailChangeHandler} placeholder="Enter an email..." required /> </div>
+                <div>
+                    <input type="email" onChange={this.emailConfChangeHandler} placeholder="Confirm an email..." required /> </div>
+                <div>
+                    <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
+                <div>
+                    <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
+                <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
+        </div>
+        <div id="window">
+            <h1>ChatApp!</h1>
+            <div className="login-pop">
+                <form onSubmit={this.usernameSubmitHandler} className="username-container">
+                    <h1>React Instant Chat</h1>
+                    <div>
+>>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
                         <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
                     </div>
                     <div>
@@ -162,17 +231,17 @@ class ChatAppComponent extends React.Component {
                 <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
 
-            { /*   // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
+            {    // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
 
                 <div class='users'>
                 <ul>
                     {this.state.users !== undefined &&
-              this.state.users.map(function(users){
+              this.state.users.map(function(user){
                   return <li key={user._id} onClick={this.friendRequest.bind(this, user)}>{user.name}</li>;
               }.bind(this))
                     }
                 </ul>
-            </div>*/}
+            </div>}
         </div>;
     }
 }
