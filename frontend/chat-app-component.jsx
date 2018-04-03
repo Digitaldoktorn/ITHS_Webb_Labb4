@@ -1,4 +1,6 @@
 var React = require('react');
+var emoji = require('react-easy-emoji');
+
 require('./style.css');
 
 class ChatAppComponent extends React.Component {
@@ -92,31 +94,31 @@ class ChatAppComponent extends React.Component {
 
     }
 
-        submitLogin() {
-        console.log(this.state.username, this.state.password);
+    submitLogin() {
+        //console.log(this.state.username, this.state.password);
     }
 
-        submitSignUp(){
-            console.log(this.state.username, this.state.password, this.state.passwordConf, this.state.email, this.state.emailConf);
-        }
+    submitSignUp(){
+        //console.log(this.state.username, this.state.password, this.state.passwordConf, this.state.email, this.state.emailConf);
+    }
 
-        usernameChangeHandler(event) {
-            this.setState({ username: event.target.value });
-        }
+    usernameChangeHandler(event) {
+        this.setState({ username: event.target.value });
+    }
 
-        passwordChangeHandler(e) {
-            this.setState({ password: e.target.value });
-        }
+    passwordChangeHandler(e) {
+        this.setState({ password: e.target.value });
+    }
 
-        passwordConfChangeHandler(event) {
-            this.setState({ passwordConf: event.target.value });
-        }
+    passwordConfChangeHandler(event) {
+        this.setState({ passwordConf: event.target.value });
+    }
 
-        emailChangeHandler(event) {
-            this.setState({ email: event.target.value });
-        }
+    emailChangeHandler(event) {
+        this.setState({ email: event.target.value });
+    }
 
-        emailConfChangeHandler(event) {
+    emailConfChangeHandler(event) {
             this.setState({ emailConf: event.target.value });
         }
 
@@ -166,6 +168,13 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
+<<<<<<< HEAD
+            <div id={this.state.login}>
+                <h1>Izas updates</h1>
+                <form className="username-container">
+                    <h1>Log in</h1>
+                    <div className="login">
+=======
           <div id={this.state.login}>
             <h1>Welcome to ChatApp!</h1>
             <h2>The unversal chat, for you!</h2>
@@ -204,15 +213,49 @@ class ChatAppComponent extends React.Component {
                 <form onSubmit={this.usernameSubmitHandler} className="username-container">
                     <h1>React Instant Chat</h1>
                     <div>
+>>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
                         <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
                     </div>
-                    <input type="submit" value="Submit" />
-                </form>
+                    <div>
+                        <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
+
+                    <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
+
+                <p>Don't have an account?</p>
+                <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
             </div>
+
+            <div id={this.state.register}>
+                <form className="username-container">
+                    <h1>Register</h1>
+                    <div>
+                        <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div>
+                    <div>
+                        <input type="email" onChange={this.emailChangeHandler} placeholder="Enter an email..." required /> </div>
+                    <div>
+                        <input type="email" onChange={this.emailConfChangeHandler} placeholder="Confirm an email..." required /> </div>
+                    <div>
+                        <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
+                    <div>
+                        <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
+                    <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
+            </div>
+            <div>
+                <h1>ChatApp!</h1>
+                <div className="login-pop">
+                    <form onSubmit={this.usernameSubmitHandler} className="username-container">
+                        <h1>React Instant Chat</h1>
+                        <div>
+                            <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                        </div>
+                        <input type="submit" value="Submit" />
+                    </form>
+                </div>
 
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
                     return <p><span></span>{message.msg}</p>;
                 })}</div>
+              
                 <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyPress={function(e) {
                     if (e.key === 'Enter'){
                         this.sendMsg();
