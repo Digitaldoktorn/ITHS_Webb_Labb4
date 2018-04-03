@@ -30,7 +30,7 @@ class ChatAppComponent extends React.Component {
 			'status': 'pending'
 		},
 		{
-			'friendname': 'edvin',
+			'friensdname': 'edvin',
 			'status': 'pending'
 		},
 		{
@@ -47,8 +47,8 @@ class ChatAppComponent extends React.Component {
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
         this.passwordConfChangeHandler = this.usernameSubmitHandler.bind(this);
-        this.emailChangeHandler = this.usernameSubmitHandler.bind(this);
-        this.emailConfChangeHandler = this.usernameSubmitHandler.bind(this);
+        this.emailChangeHandler = this.emailChangeHandler.bind(this);
+        this.emailConfChangeHandler = this.emailConfChangeHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
         this.submitSignUp = this.submitSignUp.bind(this);
@@ -122,16 +122,19 @@ class ChatAppComponent extends React.Component {
             this.setState({ emailConf: event.target.value });
         }
 
-        usernameSubmitHandler(event) {event.preventDefault();
-            this.setState({ submitted: true, username: this.state.username });}
+    usernameSubmitHandler(event) {
+          event.preventDefault();
+            this.setState({ submitted: true, username: this.state.username });
 
-        fetch('/user/' + user.name, {
+          }
+
+        /*fetch('/user/' + user.name, {
             body: '{"name": "' + this.state.user + '", "status": "pending"}',
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'PUT'
-        });
+        });*/
 
         /*fetch('/user').then(function (response) {
             return response.json();
@@ -156,6 +159,7 @@ class ChatAppComponent extends React.Component {
                     method: 'POST'
                 }).then( this.setState({login: 'off'}));
 });
+}
 
 
 
@@ -168,13 +172,7 @@ class ChatAppComponent extends React.Component {
     //What will show up in the browser
     render() {
         return <div>
-<<<<<<< HEAD
-            <div id={this.state.login}>
-                <h1>Izas updates</h1>
-                <form className="username-container">
-                    <h1>Log in</h1>
-                    <div className="login">
-=======
+
           <div id={this.state.login}>
             <h1>Welcome to ChatApp!</h1>
             <h2>The unversal chat, for you!</h2>
@@ -213,7 +211,7 @@ class ChatAppComponent extends React.Component {
                 <form onSubmit={this.usernameSubmitHandler} className="username-container">
                     <h1>React Instant Chat</h1>
                     <div>
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
+
                         <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
                     </div>
                     <div>
@@ -255,7 +253,7 @@ class ChatAppComponent extends React.Component {
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
                     return <p><span></span>{message.msg}</p>;
                 })}</div>
-              
+
                 <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyPress={function(e) {
                     if (e.key === 'Enter'){
                         this.sendMsg();
