@@ -1,6 +1,4 @@
 var React = require('react');
-var emoji = require('react-easy-emoji');
-
 require('./style.css');
 
 class ChatAppComponent extends React.Component {
@@ -122,42 +120,40 @@ class ChatAppComponent extends React.Component {
             this.setState({ emailConf: event.target.value });
         }
 
-        usernameSubmitHandler(event) {event.preventDefault();
-            this.setState({ submitted: true, username: this.state.username });}
+  usernameSubmitHandler(event) {
+    event.preventDefault();
+            this.setState({ submitted: true, username: this.state.username });
+          }
 
-
+friendRequest(user){
+  console.log(user);
+}
 
     //Function runs when exiting component, we can use this to toggle user as offline or see last time user signed in
     componentWillUnmount() {
         console.log('shutting down');
     }
 
-    //What will show up in the browser
+
     render() {
         return <div>
-<<<<<<< HEAD
-            <div id={this.state.login}>
-                <h1>Izas updates</h1>
-                <form className="username-container">
-                    <h1>Log in</h1>
-                    <div className="login">
-=======
-          <div id={this.state.login}>
-            <h1>Welcome to ChatApp!</h1>
-            <h2>The unversal chat, for you!</h2>
-            <form className="username-container">
-                <h1>Log in</h1>
-                <div className="login">
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
-                </div>
-                <div>
-                    <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
+                  <div id={this.state.login}>
+                      <h1>Welcome to ChatApp!</h1>
+                      <h2>The unversal chat, for you!</h2>
+                      <form className="username-container">
+                        <h1>Log in</h1>
+                        <div className="login">
+                          <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                        </div>
 
-                <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
+                        <div>
+                          <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /></div>
 
-            <p>Don't have an account?</p>
-            <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
-        </div>
+                          <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
+
+                          <p>Don't have an account?</p>
+                          <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
+                    </div>
 
         <div id={this.state.register}>
             <form className="username-container">
@@ -174,17 +170,18 @@ class ChatAppComponent extends React.Component {
                     <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
                 <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
         </div>
+
         <div id="window">
             <h1>ChatApp!</h1>
+
             <div className="login-pop">
                 <form onSubmit={this.usernameSubmitHandler} className="username-container">
                     <h1>React Instant Chat</h1>
                     <div>
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
-                        <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                        <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required/>
                     </div>
                     <div>
-                        <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
+                        <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required/></div>
 
                     <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
 
@@ -207,6 +204,7 @@ class ChatAppComponent extends React.Component {
                         <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
                     <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
             </div>
+
             <div>
                 <h1>ChatApp!</h1>
                 <div className="login-pop">
@@ -222,7 +220,7 @@ class ChatAppComponent extends React.Component {
                 <div className="all-messages">{this.state.allMessages.map(function(message) {
                     return <p><span></span>{message.msg}</p>;
                 })}</div>
-              
+
                 <input className="textbox" type="text" value={this.state.msg} onChange={this.saveMsg} onKeyPress={function(e) {
                     if (e.key === 'Enter'){
                         this.sendMsg();
@@ -231,19 +229,16 @@ class ChatAppComponent extends React.Component {
                 <button type="submit" onClick={this.sendMsg}>Send</button>
             </div>
 
-            {    // Checks if this.state.users is defined. If it is defined, the array is mapped and returns a list of users. By clicking a name in the list we know who we are and to whom we want to send a request.
-
                 <div class='users'>
-                <ul>
-                    {this.state.users !== undefined &&
+                <ul>{this.state.users !== undefined &&
               this.state.users.map(function(user){
                   return <li key={user._id} onClick={this.friendRequest.bind(this, user)}>{user.name}</li>;
               }.bind(this))
-                    }
-                </ul>
-            </div>}
-        </div>;
-    }
+                    }</ul>
+            </div>
+        </div>
+      </div>;
+}
 }
 //make compone;nt available for import
 ///använd this.state.user för att skriva ut om det är du som skrivit meddelande
