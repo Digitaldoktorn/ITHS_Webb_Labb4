@@ -6,13 +6,6 @@ class ChatAppComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-<<<<<<< HEAD
-            user: undefined,
-            loginScreen: 'show',
-            login: 'login',
-            register: 'register',
-            login: 'on',
-=======
             user: '',
             msg: '',
             friend: '',
@@ -48,7 +41,6 @@ class ChatAppComponent extends React.Component {
 		}
 	]
 }]
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
         };
         this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
         this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
@@ -57,14 +49,9 @@ class ChatAppComponent extends React.Component {
         this.emailConfChangeHandler = this.usernameSubmitHandler.bind(this);
         this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
-<<<<<<< HEAD
-        this.regName = this.regName.bind(this);
-
-=======
         this.submitSignUp = this.submitSignUp.bind(this);
         this.saveMsg = this.saveMsg.bind(this);
         this.sendMsg = this.sendMsg.bind(this);
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
     }
     //here we can add all our other functions
     saveMsg(event) {
@@ -125,7 +112,17 @@ class ChatAppComponent extends React.Component {
             this.setState({ passwordConf: event.target.value });
         }
 
-<<<<<<< HEAD
+        emailChangeHandler(event) {
+            this.setState({ email: event.target.value });
+        }
+
+        emailConfChangeHandler(event) {
+            this.setState({ emailConf: event.target.value });
+        }
+
+        usernameSubmitHandler(event) {event.preventDefault();
+            this.setState({ submitted: true, username: this.state.username });}
+
         fetch('/user/' + user.name, {
             body: '{"name": "' + this.state.user + '", "status": "pending"}',
             headers: {
@@ -142,13 +139,13 @@ class ChatAppComponent extends React.Component {
     }*/
 
     register(){
-        this.setState({user: this.state.regName,
-                      password: this.state.passwordChangeHandler }, function(){
+        this.setState({user: this.state.username,
+                      password: this.state.password }, function(){
             var occupied = this.state.allUsers.filter(function(user){
-                return user.name == this.state.regName;
+                return user.name == this.state.username;
             }.bind(this));
 
-            this.state.regName !== undefined && occupied.length > 0 ? this.setState({error: <h2>Sorry, username is already taken</h2>}) : this.state.passwordChangeHandler  !== this.state.passwordConfChangeHandler ? this.setState({error: <h2>Passwords does not match</h2>}) :
+            this.state.username !== undefined && occupied.length > 0 ? this.setState({error: <h2>Sorry, username is already taken</h2>}) : this.state.password  !== this.state.passwordConf ? this.setState({error: <h2>Passwords does not match</h2>}) :
                 fetch('/user', {
                     body: '{"name":"' + this.state.user + '", "password":"' + this.state.password + '"}',
                     headers: {
@@ -158,52 +155,8 @@ class ChatAppComponent extends React.Component {
                 }).then( this.setState({login: 'off'}));
 });
 
-    submitLogin() {
-        console.log(this.state.username, this.state.password);
-    }
-
-    submitSignUp(){
-        console.log(this.state.username, this.state.password, this.state.passwordConf, this.state.email, this.state.emailConf);
-    }
-=======
-        emailChangeHandler(event) {
-            this.setState({ email: event.target.value });
-        }
-
-        emailConfChangeHandler(event) {
-            this.setState({ emailConf: event.target.value });
-        }
-
-        usernameSubmitHandler(event) {event.preventDefault();
-            this.setState({ submitted: true, username: this.state.username });}
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
 
 
-<<<<<<< HEAD
-    regName(event) {
-        this.setState({ regname: event.target.value });
-    }
-
-    passwordChangeHandler(e) {
-        this.setState({ password: e.target.value });
-    }
-
-    passwordConfChangeHandler(event) {
-        this.setState({ passwordConf: event.target.value });
-    }
-
-    emailChangeHandler(event) {
-        this.setState({ email: event.target.value });
-    }
-
-    emailConfChangeHandler(event) {
-        this.setState({ emailConf: event.target.value });
-    }
-
-    usernameSubmitHandler(event) {event.preventDefault();
-        this.setState({ submitted: true, username: this.state.username });}
-=======
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
 
     //Function runs when exiting component, we can use this to toggle user as offline or see last time user signed in
     componentWillUnmount() {
@@ -214,17 +167,6 @@ class ChatAppComponent extends React.Component {
     render() {
         return <div>
           <div id={this.state.login}>
-<<<<<<< HEAD
-            <h1>Izas updates</h1>
-            <form className="username-container">
-                <h1>Log in</h1>
-                <div>
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div>
-                <div>
-                    <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
-
-
-=======
             <h1>Welcome to ChatApp!</h1>
             <h2>The unversal chat, for you!</h2>
             <form className="username-container">
@@ -235,7 +177,6 @@ class ChatAppComponent extends React.Component {
                 <div>
                     <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
 
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
                 <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
 
             <p>Don't have an account?</p>
@@ -246,11 +187,7 @@ class ChatAppComponent extends React.Component {
             <form className="username-container">
                 <h1>Register</h1>
                 <div>
-<<<<<<< HEAD
                     <input type="text" onChange={this.regName} placeholder="Enter a username..." required /> </div>
-=======
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div>
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
                 <div>
                     <input type="email" onChange={this.emailChangeHandler} placeholder="Enter an email..." required /> </div>
                 <div>
@@ -261,9 +198,6 @@ class ChatAppComponent extends React.Component {
                     <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
                 <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
         </div>
-<<<<<<< HEAD
-        <h1>chatapp!!</h1>
-=======
         <div id="window">
             <h1>ChatApp!</h1>
             <div className="login-pop">
@@ -298,7 +232,6 @@ class ChatAppComponent extends React.Component {
                     }
                 </ul>
             </div>}
->>>>>>> b1b7af024552cc3726e8e7e58a6afc7be213dec8
         </div>;
     }
 }
