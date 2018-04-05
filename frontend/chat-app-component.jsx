@@ -9,7 +9,6 @@ class ChatAppComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-<<<<<<< HEAD
             user: '',
             msg: '',
             friend: '',
@@ -56,7 +55,7 @@ class ChatAppComponent extends React.Component {
         this.submitSignUp = this.submitSignUp.bind(this);
         this.saveMsg = this.saveMsg.bind(this);
         this.sendMsg = this.sendMsg.bind(this);
-=======
+
             user: undefined,
             rec: undefined,
             string: '',
@@ -118,7 +117,7 @@ class ChatAppComponent extends React.Component {
                 method: 'PUT'
             });
         }
->>>>>>> 47902a72c3de80b2d09cd354de6ef0898b60eb75
+
     }
 
 
@@ -370,7 +369,7 @@ class ChatAppComponent extends React.Component {
 friendRequest(user){
   console.log(user);
 }
-=======
+
             fetch('/user').then(function (response) {
                 return response.json();
             }).then(function (result) {
@@ -393,7 +392,7 @@ friendRequest(user){
         }.bind(this), 500, this.reqFind());
 
     }
->>>>>>> 47902a72c3de80b2d09cd354de6ef0898b60eb75
+
 
     componentWillUnmount() {
         this.lastCheck();
@@ -403,7 +402,7 @@ friendRequest(user){
 
     render() {
         return <div>
-<<<<<<< HEAD
+
                   <div id={this.state.login}>
                     <div><img src="logo.png"/></div>//does not work
                       <div id="welcome_msg">
@@ -469,7 +468,7 @@ friendRequest(user){
                         <input type="submit" value="Submit" />
                     </form>
                 </div>
-=======
+
           <div class={this.state.login}>
                 <div class="sign-in">
 
@@ -576,7 +575,7 @@ friendRequest(user){
 
               </div>
             </div>
->>>>>>> 47902a72c3de80b2d09cd354de6ef0898b60eb75
+
 
             <div class="main">
 
