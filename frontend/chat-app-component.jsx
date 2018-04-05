@@ -1,5 +1,7 @@
 var React = require('react');
 require('./style.css');
+//require('./fonts/candy-inc/billy-argel_candy-inc/CANDY___.ttf');
+//var logo = require('./images/logo.png');
 
 class ChatAppComponent extends React.Component {
 //building component, setting initial state 'user', possible to bind functions from here
@@ -28,7 +30,7 @@ class ChatAppComponent extends React.Component {
 			'status': 'pending'
 		},
 		{
-			'friensdname': 'edvin',
+			'friendsname': 'edvin',
 			'status': 'pending'
 		},
 		{
@@ -120,7 +122,6 @@ class ChatAppComponent extends React.Component {
             this.setState({ emailConf: event.target.value });
         }
 
-<<<<<<< HEAD
     usernameSubmitHandler(event) {
           event.preventDefault();
             this.setState({ submitted: true, username: this.state.username });
@@ -161,13 +162,6 @@ class ChatAppComponent extends React.Component {
 }
 
 
-=======
-  usernameSubmitHandler(event) {
-    event.preventDefault();
-            this.setState({ submitted: true, username: this.state.username });
-          }
->>>>>>> ea17f321a99fe757b24121b3e5fdba0a220358a9
-
 friendRequest(user){
   console.log(user);
 }
@@ -180,96 +174,63 @@ friendRequest(user){
 
     render() {
         return <div>
-<<<<<<< HEAD
-
-          <div id={this.state.login}>
-            <h1>Welcome to ChatApp!</h1>
-            <h2>The unversal chat, for you!</h2>
-            <form className="username-container">
-                <h1>Log in</h1>
-                <div className="login">
-                    <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
-                </div>
-                <div>
-                    <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
-=======
                   <div id={this.state.login}>
-                      <h1>Welcome to ChatApp!</h1>
-                      <h2>The unversal chat, for you!</h2>
-                      <form className="username-container">
+                    <div><img src="logo.png"/></div>//does not work
+                      <div id="welcome_msg">
+                   <h1>Welcome to ChatApp!</h1>
+                   <h2>The chat for you!</h2>
+                   </div>
+                    <div className="start_container">
+                      <form>
                         <h1>Log in</h1>
                         <div className="login">
-                          <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
+                          <input className= "input_start" type="text" onChange={this.usernameChangeHandler} placeholder="Username" required />
                         </div>
->>>>>>> ea17f321a99fe757b24121b3e5fdba0a220358a9
-
                         <div>
-                          <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /></div>
-
-                          <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
-
-                          <p>Don't have an account?</p>
-                          <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
+                          <input className= "input_start" type="password" onChange={this.passwordChangeHandler} placeholder="Password" required /></div>
+                          <button className= "button_start" type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button>
+                        </form>
+                        <p>Don't have an account?</p>
+                        <button className="button_start" type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
+                      </div>
                     </div>
 
         <div id={this.state.register}>
-            <form className="username-container">
+            <form className="start_container">
                 <h1>Register</h1>
                 <div>
-                    <input type="text" onChange={this.regName} placeholder="Enter a username..." required /> </div>
+                    <input type="text" onChange={this.usernameSubmitHandler} placeholder="Username" required /> </div>
                 <div>
-                    <input type="email" onChange={this.emailChangeHandler} placeholder="Enter an email..." required /> </div>
+                    <input type="email" onChange={this.emailChangeHandler} placeholder="Email" required /> </div>
                 <div>
-                    <input type="email" onChange={this.emailConfChangeHandler} placeholder="Confirm an email..." required /> </div>
+                    <input type="email" onChange={this.emailConfChangeHandler} placeholder="Confirm your email" required /> </div>
                 <div>
-                    <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
+                    <input type="password" onChange={this.passwordChangeHandler} placeholder="Password" required /> </div>
                 <div>
-                    <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
-                <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
+                    <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm your password" required /> </div>
+                <button className="button_start" type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
         </div>
 
         <div id="window">
-            <h1>ChatApp!</h1>
-
-            <div className="login-pop">
-                <form onSubmit={this.usernameSubmitHandler} className="username-container">
-                    <h1>React Instant Chat</h1>
-                    <div>
-<<<<<<< HEAD
-
-                        <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required />
-=======
-                        <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required/>
->>>>>>> ea17f321a99fe757b24121b3e5fdba0a220358a9
-                    </div>
-                    <div>
-                        <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required/></div>
-
-                    <button type="submit" onClick={function(){this.setState({login: 'none'}, this.submitLogin);}.bind(this)}>Log in</button></form>
-
-                <p>Don't have an account?</p>
-                <button type="submit" onClick={function(){this.setState({register: 'block', login: 'none'});}.bind(this)}>Sign up here</button>
-            </div>
-
-            <div id={this.state.register}>
-                <form className="username-container">
-                    <h1>Register</h1>
-                    <div>
-                        <input type="text" onChange={this.usernameChangeHandler} placeholder="Enter a username..." required /> </div>
-                    <div>
-                        <input type="email" onChange={this.emailChangeHandler} placeholder="Enter an email..." required /> </div>
-                    <div>
-                        <input type="email" onChange={this.emailConfChangeHandler} placeholder="Confirm an email..." required /> </div>
-                    <div>
-                        <input type="password" onChange={this.passwordChangeHandler} placeholder="Enter a password..." required /> </div>
-                    <div>
-                        <input type="password" onChange={this.passwordConfChangeHandler} placeholder="Confirm a password..." required /> </div>
-                    <button type="submit" onClick={function(){this.setState({register: 'none'}, this.submitSignUp);}.bind(this)}>Register</button></form>
-            </div>
 
             <div>
+              <div id="profile">
+                <div id="profile_box">
+                  <div><img id="profile_picture" src="user.jpg"/></div>
+                  <p>John Snow</p><p>Arizona, USA</p></div>
+                  <div id="profile_list">
+                    <h3>Friends</h3>
+                    <h3>Notification</h3>
+                    <h3>Messages</h3>
+                    <h3>Pictures</h3>
+                    <h3>Friends</h3>
+                    <h3>Groups</h3>
+                    <h3>Settings</h3>
+                  </div>
+              </div>
                 <h1>ChatApp!</h1>
                 <div className="login-pop">
+
                     <form onSubmit={this.usernameSubmitHandler} className="username-container">
                         <h1>React Instant Chat</h1>
                         <div>
