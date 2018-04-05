@@ -226,15 +226,21 @@ li:hover{
   height: 2em;
   width: 60vw;
 }
-#post input{
-  height: 100%;
-  width: 75%;
+#post textarea{
+  height: 10vh;
+  width: 70%;
 }
 
 #post button{
-  height: 100%;
+  height: 10vh;
   width: 20%;
   box-sizing: content-box;
+  margin-top: -0.1em;
+}
+
+.textbutton {
+    height: 100%;
+    width: 100%;
 }
 
 #hide-emos{
