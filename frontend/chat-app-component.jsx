@@ -354,10 +354,10 @@ class ChatAppComponent extends React.Component {
             </div>
 
             <div id="header">
-                <img src="logo-white.svg"></img>
-                <p>logged in as: <b>{this.state.user}</b></p>
-                <p class="instruct">send friend request</p>
-                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
+                <div class="header-logo"><img src="logo-white.svg"></img></div>
+                <div class="search-friends"><p class="instruct">send friend request</p>
+                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/></div><div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p></div>
+
 
 
                 <div class="search-result">
