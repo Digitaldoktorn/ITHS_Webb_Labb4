@@ -442,7 +442,6 @@ class ChatAppComponent extends React.Component {
                         }.bind(this))}
                     </div>
                 </div>
-                <div class="textbutton">
                 <textarea value={this.state.string} onChange={function(event){
                     this.setState({string: event.target.value});
                 }.bind(this)} onKeyPress={function(e){
@@ -452,7 +451,6 @@ class ChatAppComponent extends React.Component {
 
                 <button onClick={this.sendString}
                 >send</button>
-                </div>
             </div>
             </div>
             }

@@ -236,6 +236,7 @@ li:hover{
   width: 20%;
   box-sizing: content-box;
   margin-top: -0.1em;
+  float: right;
 }
 
 .textbutton {
@@ -249,4 +250,89 @@ li:hover{
 
 #show-emos{
   display: block;
+}
+
+@media (max-width: 933px) {
+
+    #post textarea{
+      height: 10vh;
+      width: 100%;
+    }
+
+    #post > button{
+      height: 5vh;
+      width: 90%;
+      box-sizing: content-box;
+      margin-top: -0.1em;
+      float: left;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .field {
+      margin-left: 5vw;
+      background-color: white;
+      width: 90vw;
+      height: 50vh;
+      overflow: scroll;
+      padding-top: 2em;
+      padding-bottom: 2em;
+    }
+
+    #post{
+      margin-left: 3em;
+      margin-bottom: 3em;
+      height: 2em;
+      width: 90%;
+    }
+
+    #post textarea{
+      height: 10vh;
+      width: 70%;
+    }
+
+    #post button{
+      height: 10vh;
+      width: 20%;
+      box-sizing: content-box;
+      margin-top: -0.1em;
+      float: right;
+    }
+
+    .main {
+        width: 100%;
+    }
+    .widget {
+        display: none;
+    }
+}
+
+@media (max-width: 622px) {
+    #post{
+      margin-left: 3em;
+      margin-bottom: 3em;
+      height: 2em;
+      width: 60vw;
+    }
+    #post textarea{
+      height: 10vh;
+      width: 70%;
+    }
+
+    #post button{
+      height: 10vh;
+      width: 20%;
+      box-sizing: content-box;
+      margin-top: -0.1em;
+      float: right;
+    }
+}
+
+.main {
+    width: 100%;
+}
+.widget {
+    display: none;
+}
 }
