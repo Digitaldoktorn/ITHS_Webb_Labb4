@@ -177,12 +177,13 @@ class ChatAppComponent extends React.Component {
 
             var myFriends = this.state.allUsers.filter(function(me){
                 return me.name === this.state.user;
-            }.bind(this)).filter(function(friends){
-                if (friends.friends){
-                    return friends.friends;
+            }.bind(this)).filter(function(current){
+                console.log(current, this.state.allUsers);
+                if (current.friends){
+                    return current.friends;
                 }
                 return;
-            });
+            }.bind(this));
 
             if (myFriends.length > 0){
 
@@ -415,7 +416,8 @@ class ChatAppComponent extends React.Component {
 
             <div class="main">
 
-            {this.state.user == undefined || this.state.rec == undefined ? <div class="field"><h1>welcome to ChatApp!</h1></div> : <div><div class='field'>
+                {this.state.user == undefined || this.state.rec == undefined ? <div class="field"><h1>Welcome to ChatApp!</h1></div> : <div><div class='field'>
+
                 {this.state.messages.map(function(msg) {
                     var marker = msg.from === this.state.user ? 'send': 'rec';
                     var sender = msg.from === this.state.user ? 'you': msg.from;
@@ -440,15 +442,17 @@ class ChatAppComponent extends React.Component {
                         }.bind(this))}
                     </div>
                 </div>
-                <input value={this.state.string} onChange={function(event){
+                <div class="textbutton">
+                <textarea value={this.state.string} onChange={function(event){
                     this.setState({string: event.target.value});
                 }.bind(this)} onKeyPress={function(e){
                     if(e.key === 'Enter'){
                         this.sendString();
-                    }}.bind(this)}></input>
+                    }}.bind(this)}></textarea>
 
                 <button onClick={this.sendString}
                 >send</button>
+                </div>
             </div>
             </div>
             }

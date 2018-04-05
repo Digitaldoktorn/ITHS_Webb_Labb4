@@ -130,7 +130,7 @@ li{
 }
 
 li:hover{
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: #91D8D6;
   cursor: pointer;
 }
 
@@ -171,24 +171,26 @@ li:hover{
 }
 
 .widget {
-  margin-left: 5vw;
-  margin-top: 5vh;
-  height: 80vh;
-  float: right;
-  width: 25vw;
+    background-color: #def2f4;
+    margin-left: 2vw;
+    height: 80vh;
+    float: right;
+    width: 25vw;
+    padding: 2em;
 }
 
 .main {
-  margin-top: 5vh;
-  height: 80vh;
-  float: left;
-  width: 70vw;
+    background-color: white;
+    margin-top: 5vh;
+    height: 80vh;
+    float: left;
+    width: 65vw;
+
 }
 
 .field {
   margin-left: 5vw;
   background-color: white;
-  padding-left: 3em;
   width: 60vw;
   height: 50vh;
   overflow: scroll;
@@ -202,6 +204,8 @@ li:hover{
   border-radius: 0.2em;
   background-color: #91D8D6;
   color: white;
+  clear: left;
+  width: 60%;
 }
 
 .send {
@@ -210,7 +214,11 @@ li:hover{
   text-align: right;
   margin-right: 0;
   margin-left: auto;
+  clear: right;
+  width: 60%;
+  background-color: #def2f4;
 }
+
 
 #post{
   margin-left: 3em;
@@ -218,15 +226,21 @@ li:hover{
   height: 2em;
   width: 60vw;
 }
-#post input{
-  height: 100%;
-  width: 75%;
+#post textarea{
+  height: 10vh;
+  width: 70%;
 }
 
 #post button{
-  height: 100%;
+  height: 10vh;
   width: 20%;
   box-sizing: content-box;
+  margin-top: -0.1em;
+}
+
+.textbutton {
+    height: 100%;
+    width: 100%;
 }
 
 #hide-emos{
