@@ -1,184 +1,204 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path'); // the path module makes it easier to use the static middleware
 var MongoClient = require('mongodb').MongoClient;
-//var ObjectId = require('mongodb').ObjectID;
 var app = express();
-var db;
+var database;
+var bodyParser = require('body-parser');
+var path = require('path');
+//var ObjectId = require('mongodb').ObjectID;
 
-app.use(bodyParser.json()); // middleware
-
-// Connecting to DB (Module 11)
-MongoClient.connect('mongodb://localhost:27017', function(error, client) {
-  if (error) {
-    console.error('Failed to connect to the database!');
-    console.log(error);
-  } else {
-    console.log('Successfully connected to the database!');
-    db = client.db('chatApp');
-  }
-});
-
-// Serving static files --- (Module 10 exercise 7)
-app.use(express.static(path.join(path.resolve(), 'public'))); // static-middleware
-
-//create path for linking bundle.js (we might wanna work around this later to move the html-file to the frontend folder)
+app.use('/', express.static(path.join(path.resolve(), 'public')));
 app.use(express.static('../'));
-
 app.use(bodyParser.json());
 
-// GET-request. "find" is empty and will then get all objects in the collection. If you want to choose a certain object, enter the key/value pair within curly braces. "result" is the data that we get from the collection and what is presented in the browser after a fetch from frontend. (Module 11, exercise 4)
+MongoClient.connect('mongodb://localhost:27017',
 
-// I added 'user' in the http requests below
-app.get('/message', function(request, response){
-  db.collection('message').find({}).toArray(function(error, result){
-    if (error){
+  function(error, client) {
+    if (error) {
+      console.error('failed to connect to server!');
       console.log(error);
     } else {
-      response.send(result);
+      console.log('connected to server!');
+      database = client.db('messages');
     }
   });
-});
 
-app.get('/user', function(request, response){
-  db.collection('user').find({}).toArray(function(error, result){
-    if (error){
-      console.log(error);
-    } else {
-      response.send(result);
-    }
-  });
-});
 
-app.get('/user', function(request, response){
-  db.collection('user').find({name:request.params.user}).toArray(function(error, result){
-    if (error){
-      console.log(error);
-    } else {
-      response.send(result);
-    }
-  });
-});
 
-// POST-request.
-app.post('/message', function (request, response){
-  db.collection('message').insert(request.body, function (error, result){
+app.get('/string', function (request, response) {
+
+  database.collection('string').find({ $and : [
+    { $or : [ { from: request.query.from }, { from: request.query.to } ] },
+    { $or : [ { to: request.query.from }, { to: request.query.to } ] }
+  ]
+  }).toArray(function (error, result) {
     if (error) {
       console.log(error);
-    } else {
+    }else {
       response.send(result);
     }
   });
 });
 
-app.post('/user', function (request, response){
-  db.collection('user').insert(request.body, function (error, result){
+app.get('/public', function (request, response) {
+
+  database.collection('string').find(
+    {  to: 'public' }).toArray(function (error, result) {
     if (error) {
       console.log(error);
-    } else {
+    }else {
       response.send(result);
     }
   });
 });
 
-// PUT-requst, replace with new data in Insomnia (Module 11 exercise 8)
-//BE CAREFULL HERE, THIS WILL DELETE ALL EXISTING MESSAGES!
-app.put('/message', function (request, response){
-  db.collection('message').remove(
-    {},
-    function (error, result) {
-      db.collection('message').insertMany(request.body, function(){
-        response.send(result);
-      });
+
+app.get('/onloadmsg', function (request, response) {
+
+  database.collection('string').find({ to : request.query.user, stamp : {$gt: Number(request.query.time) }}).toArray(function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
     }
-  );
+  });
 });
-/*
-//BE CAREFULL HERE, THIS WILL DELETE ALL EXISTING USERS!
-app.put('/user', function (request, response){
-  db.collection('user').remove(
-    {},
-    function (error, result) {
-      db.collection('user').insertMany(request.body, function(){
-        response.send({});
-      });
+
+app.get('/user', function (request, response) {
+  database.collection('user').find().toArray(function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
     }
-  );
+  });
 });
-*/
-// PUT-request: Add friends
+
+app.get('/friends', function (request, response) {
+  database.collection('user').find({name: request.query.friend }).toArray(function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
+    }
+  });
+});
+
+
+
+app.get('/allmsg', function (request, response) {
+  database.collection('string').find().toArray(function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
+    }
+  });
+});
+
+app.post('/string', function (request, response) {
+  database.collection('string').insert(request.body, function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
+    }
+  });
+});
+
+app.post('/user', function (request, response) {
+  database.collection('user').insert(request.body, function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
+    }
+  });
+});
+
+app.get('/user', function (request, response) {
+  database.collection('user').find({ 'name': { $exists: true }}).toArray(function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
+    }
+  });
+});
+
+
+app.delete('/user', function (request, response) {
+  database.collection('user').remove({}, function (error) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send({});
+    }
+  });
+});
+
+app.delete('/string', function (request, response) {
+  database.collection('string').remove({}, function (error) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send({});
+    }
+  });
+});
+
 app.put('/user/:name', function (request, response) {
-  db.collection('user').update(
-    {name: request.params.name}, // se Insomnia http://localhost:3000/user/user1
+  database.collection('user').update(
+    {name: request.params.name},
     {$push: {friends: request.body}},
-    function (error, result) {
-      if(error) {
-        console.log(error);
-      } else {
-        response.send(result);
-      }
-    }
-  );
-});
-
-// PUT-request: Confirm friend requests
-app.put('/confirm', function (request, response){
-  console.log(request.query.name, request.query.name2);
-  db.collection('user').update(
-    {name: request.query.name, 'friends.friendsname' : request.query.name2},
-    {$set: {'friends.$.status': 'confirmed'}},
     function (error, result) {
       if (error) {
         console.log(error);
-      } else {
+      }else {
         response.send(result);
       }
     });
 });
 
-/*
-// DELETE-request (old) - To delete an object from DB, enter id number after localhost:3000/ in Insomnia (Module 11 exercise 7).
-app.delete('/:id', function (request, response) {
-  db.collection('message').remove(
-    { _id: new ObjectId(request.params.id) },
-    function(error, result) {
-      response.send({});
-    }
-  );
+app.put('/confirm', function (request, response) {
+
+  database.collection('user').update(
+    {name: request.query.name, 'friends.name' : request.query.name2},
+    {$set: {'friends.$.status': 'confirmed'}},{multi: true},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send(result);
+      }
+    });
 });
 
-app.delete('/:id', function (request, response) {
-  db.collection('user').remove(
-    { _id: new ObjectId(request.params.id) },
-    function(error, result) {
-      response.send({});
-    }
-  );
-});
-*/
-
-// DELETE-request-deletes the whole collection!
-app.delete('/:id', function (request, response) {
-  db.collection('message').remove({}, function (error) {
-    if (error) {
-      console.log(error);
-    } else {
-      response.send({});
-    }
-  });
+app.put('/status', function (request, response) {
+  database.collection('user').update(
+    {name: request.query.user},
+    {$set: {'status': request.query.status}},{upsert: true},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send(result);
+      }
+    });
 });
 
-app.delete('/user', function (request, response) {
-  db.collection('user').remove({}, function (error) {
-    if (error) {
-      console.log(error);
-    } else {
-      response.send({});
-    }
-  });
+app.put('/check', function (request, response) {
+  database.collection('user').update(
+    {name: request.query.user},
+    {$set: {'checkout': Number(request.query.date)}},{upsert: true},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send(result);
+      }
+    });
 });
 
-
-app.listen(3000, function(){
-  console.log('The service is running! izA');
+app.listen(3000, function () {
+  console.log('The service is UPDATED and running!');
 });
