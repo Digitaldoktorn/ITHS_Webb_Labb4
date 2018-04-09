@@ -1,6 +1,7 @@
 var React = require('react');
 
 require('./style.css');
+var UserProfile = require('./user_profile.jsx');
 
 class ChatAppComponent extends React.Component {
 
@@ -357,20 +358,10 @@ class ChatAppComponent extends React.Component {
             <div id="header">
                 <img src="logo-white.svg"></img>
 
-                  <input type="checkbox" id="menu-toggle" />
-<label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
-  <div class="content-container">
-    Main Content Here
-  </div>
+                <div id="user_profile">
+                  <UserProfile/>
+                </div>
 
-  <div class="slideout-sidebar">
-    <ul>
-      <li>Home</li>
-      <li>About</li>
-      <li>Blog</li>
-      <li>Contact</li>
-    </ul>
-  </div>
                 <p>logged in as: <b>{this.state.user}</b></p>
                 <p class="instruct">send friend request</p>
                 <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
@@ -414,7 +405,7 @@ class ChatAppComponent extends React.Component {
 
                 <p onClick={function(){
                     this.setState({rec: 'public'});
-                  }.bind(this)}>Public Chat</p>
+                  }.bind(this)}>Private Chat</p>
 
                 {this.state.friends.length > 0 ? <p>your friends: </p> : <p> No friends yet</p>}
 
