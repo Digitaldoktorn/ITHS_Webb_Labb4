@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "en enkel chatapplikation",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "babel-preset-react": "^6.24.1",
     "node-emoji": "^1.8.1",

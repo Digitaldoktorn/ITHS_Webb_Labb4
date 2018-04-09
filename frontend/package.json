@@ -9,7 +9,11 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-easy-emoji": "^1.1.0",
+<<<<<<< HEAD
     "react-material-components-web": "^0.1.18"
+=======
+    "uuid": "^3.2.1"
+>>>>>>> 613789fc1664e62fe063918bb7b8e9fe2be654b9
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

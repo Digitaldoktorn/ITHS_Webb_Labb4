@@ -130,7 +130,7 @@ li{
 }
 
 li:hover{
-  background-color: #91D8D6;
+  background-color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
 }
 
@@ -171,26 +171,24 @@ li:hover{
 }
 
 .widget {
-    background-color: #def2f4;
-    margin-left: 2vw;
-    height: 80vh;
-    float: right;
-    width: 25vw;
-    padding: 2em;
+  margin-left: 5vw;
+  margin-top: 5vh;
+  height: 80vh;
+  float: right;
+  width: 25vw;
 }
 
 .main {
-    background-color: white;
-    margin-top: 5vh;
-    height: 80vh;
-    float: left;
-    width: 65vw;
-
+  margin-top: 5vh;
+  height: 80vh;
+  float: left;
+  width: 70vw;
 }
 
 .field {
   margin-left: 5vw;
   background-color: white;
+  padding-left: 3em;
   width: 60vw;
   height: 50vh;
   overflow: scroll;
@@ -204,8 +202,6 @@ li:hover{
   border-radius: 0.2em;
   background-color: #91D8D6;
   color: white;
-  clear: left;
-  width: 60%;
 }
 
 .send {
@@ -214,11 +210,7 @@ li:hover{
   text-align: right;
   margin-right: 0;
   margin-left: auto;
-  clear: right;
-  width: 60%;
-  background-color: #def2f4;
 }
-
 
 #post{
   margin-left: 3em;
@@ -226,21 +218,15 @@ li:hover{
   height: 2em;
   width: 60vw;
 }
-#post textarea{
-  height: 10vh;
-  width: 70%;
+#post input{
+  height: 100%;
+  width: 75%;
 }
 
 #post button{
-  height: 10vh;
+  height: 100%;
   width: 20%;
   box-sizing: content-box;
-  margin-top: -0.1em;
-}
-
-.textbutton {
-    height: 100%;
-    width: 100%;
 }
 
 #hide-emos{
@@ -251,65 +237,57 @@ li:hover{
   display: block;
 }
 
-/* -- Slideout Sidebar -- */
-
-.slideout-sidebar {
-  position: fixed;
-  top: 0;
-  right: -190px;
-  z-index: 0;
-  width: 150px;
-  height: 100%;
-  padding: 20px;
-  background-color: #2839a8;
-  transition: all 300ms ease-in-out;
+.admin-page {
+  margin: 2vw;
 }
 
-
-.slideout-sidebar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.admin-list button {
+  font-size: 0.8em;
+  padding: 0.5em;
+  margin: 0.2em;
+  border-radius: 0.2em;
 }
 
-.slideout-sidebar ul li {
-  cursor: pointer;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(244,244,244,0.4);
-  color: rgba(244,244,244,0.7);
+.admin-ul li{
+  width: 35vw;
 }
 
-.slideout-sidebar ul li:last-child {
-  border-bottom: 0;
+.admin-ul button{
+  margin: 0.1em;
 }
 
-.slideout-sidebar ul li:hover {
-  color: rgba(244,244,244,1);
-}
-#menu-toggle {
-  display: none;
-
-}
-
-.menu-icon {
-  position: absolute;
-  top: 18px;
-  right: 30px;
-  font-size: 24px;
-  z-index: 1;
-  transition: all 300ms ease-in-out;
+#admin-users {
+  float: left;
+  width: 20vw;
+  max-height: 60vh;
+  overflow: scroll;
 }
 
-
-/*-- The Magic --*/
-#menu-toggle:checked ~ .slideout-sidebar {
-  right: 0px;
+#admin-action{
+  float: left;
+  width: 40vw;
+  max-height: 60vh;
+  overflow: scroll;
 }
 
-#menu-toggle:checked + .menu-icon {
-  right: 210px;
+#admin-action textarea{
+  width: 35vw;
+  height: 20vh;
 }
 
-#menu-toggle:checked ~ .content-container {
-  padding-right: 190px;
+#admin-subject {
+  width: 20vw;
+  height: 2vh;
+  margin-bottom: 2vh;
+}
+
+#admin-info{
+  float: right;
+  width: 30vw;
+  max-height: 60vh;
+  overflow: scroll;
+}
+
+.active {
+  background-color: #91D8D6;
 }
