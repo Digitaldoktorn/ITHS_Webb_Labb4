@@ -1,5 +1,7 @@
 <<<<<<< current
 var React = require('react');
+//var Login = require('./login-component.jsx');
+var Admin = require('./admin-component.jsx');
 
 require('./style.css');
 
@@ -7,11 +9,13 @@ class ChatAppComponent extends React.Component {
 
     constructor() {
         super();
+  //setting initial states that needs a value (empty arrays works as backup for functions like filter and map to run)
         this.state = {
             user: undefined,
             rec: undefined,
             string: '',
             messages: [],
+            tfmsg: [],
             allUsers: [],
             exclude: [],
             login: 'on',
@@ -23,8 +27,10 @@ class ChatAppComponent extends React.Component {
             showReq: 'hide-req',
             friends: [],
             fullFriends: [],
-            emojis: ['😀', '😂', '😊', '😍', '😜', '😎', '😡', '😳' ]
+            emojis: ['😀', '😂', '😊', '😍', '😜', '😎', '😡', '😳' ],
+            adminMessages: []
         };
+  //binding my functions
         this.sendString = this.sendString.bind(this);
         this.testCall = this.testCall.bind(this);
         this.register = this.register.bind(this);
@@ -36,8 +42,45 @@ class ChatAppComponent extends React.Component {
         this.findFriends = this.findFriends.bind(this);
         this.lastCheck = this.lastCheck.bind(this);
         this.missedChat = this.missedChat.bind(this);
+        /*this.adminContact = this.adminContact.bind(this);
+        this.adminBan = this.adminBan.bind(this);
+        this.adminHistory = this.adminHistory.bind(this);
+        this.deleteMsg = this.deleteMsg.bind(this);*/
+    }
+/*
+    deleteMsg(msg){
+      console.log(msg);
     }
 
+    adminHistory(user){
+      fetch('/adminstring?from=' + user.name).then(function (response) {
+              return response.json();
+          }).then(function (result) {
+
+              this.setState({adminMessages: result,
+              adminAction: 'history',
+              adminUser: user.name });
+          }.bind(this));
+
+    }
+
+    adminContact(user){
+      console.log('contact:', user);
+      this.setState({adminAction: 'message'});
+    }
+
+    adminBan(user){
+
+      fetch('/deleteuser' + user._id, {
+        method: 'DELETE'
+      }).then(this.getApts.bind(this));
+
+      console.log('ban:', user);
+      this.setState({adminAction: 'delete',
+        adminUser: user.name});
+    }
+    */
+//Checking for messages since user last logged out
     missedChat(){
         fetch('/onloadmsg?time=' + Number(this.state.checked) + '&user=' + this.state.user ).then(function (response) {
             return response.json();
@@ -48,7 +91,7 @@ class ChatAppComponent extends React.Component {
 
     }
 
-
+//switching user status to offline when unmounting componen
     lastCheck(){
         if(this.state.user !== undefined){
             fetch('/status?status=offline&user=' + this.state.user, {
@@ -73,6 +116,7 @@ class ChatAppComponent extends React.Component {
 
 
     findFriends(){
+
         var friends = this.state.allUsers.filter(function(me){
             return me.name === this.state.user;
         }.bind(this)).filter(function(friends){
@@ -83,19 +127,23 @@ class ChatAppComponent extends React.Component {
             return confirmed.status === 'confirmed';
         });
 
-        var newFriends = [];
-        confirmed.map(function(user){
-            fetch('/friends?friend=' + user.name).then(function (response){
+        this.setState({ friends: confirmed });
+
+var newFriends = '';
+
+confirmed.map(function(user){
+    return newFriends = newFriends + user.name + '/';
+  });
+
+            fetch('/friends?friend=' + newFriends).then(function (response){
               return response.json();
             }).then(function(result){
-              newFriends.push(result);
-            });
-          });
 
+              this.setState({ fullFriends: result });
 
-          this.setState({fullFriends: newFriends,
-          friends: confirmed});
-    }
+            }.bind(this));
+
+  }
 
 
     confirmFriend(req){
@@ -178,13 +226,12 @@ class ChatAppComponent extends React.Component {
 
             var myFriends = this.state.allUsers.filter(function(me){
                 return me.name === this.state.user;
-            }.bind(this)).filter(function(current){
-                console.log(current, this.state.allUsers);
-                if (current.friends){
-                    return current.friends;
+            }.bind(this)).filter(function(friends){
+                if (friends.friends){
+                    return friends.friends;
                 }
                 return;
-            }.bind(this));
+            });
 
             if (myFriends.length > 0){
 
@@ -267,6 +314,20 @@ class ChatAppComponent extends React.Component {
 
         setInterval(function(){
 
+          var adminMsg = this.state.allUsers.filter(function(me){
+              return me.name === this.state.user;
+          }.bind(this));
+
+          if(adminMsg[0] && adminMsg[0].mail){
+            this.setState({ adminMessages: adminMsg[0].mail });
+          }
+/*
+            var online = this.state.allUsers.filter(function(ol){
+              return ol.status === 'online';
+            });
+
+            this.setState({online: online});
+*/
           if (this.state.user && this.state.login === 'off') {
             fetch('/status?status=online&user=' + this.state.user, {
               body: {},
@@ -276,7 +337,15 @@ class ChatAppComponent extends React.Component {
               method: 'PUT'
           });
         }
-
+/*
+        if(this.state.user === 'admin'){
+          fetch('/tfmsg?time=' + Number(Date.now() - 86400000)).then(function (response) {
+            return response.json();
+          }).then(function (result) {
+            this.setState({tfmsg: result});
+          }.bind(this));
+          }
+*/
             fetch('/user').then(function (response) {
                 return response.json();
             }).then(function (result) {
@@ -307,7 +376,9 @@ class ChatAppComponent extends React.Component {
 
 
     render() {
+
         return <div>
+
           <div class={this.state.login}>
                 <div class="sign-in">
 
@@ -354,11 +425,13 @@ class ChatAppComponent extends React.Component {
                 </div>
             </div>
 
-            <div id="header">
-                <div class="header-logo"><img src="logo-white.svg"></img></div>
-                <div class="search-friends"><p class="instruct">send friend request</p>
-                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/></div><div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p></div>
 
+            {this.state.user !=='admin' ? <div>
+              <div id="header">
+                <img src="logo-white.svg"></img>
+                <p>logged in as: <b>{this.state.user}</b></p>
+                <p class="instruct">send friend request</p>
+                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
 
 
                 <div class="search-result">
@@ -373,27 +446,19 @@ class ChatAppComponent extends React.Component {
             </div>
 
             <div class="widget">
-              <p>friend requests: <b onMouseOver={function(){
-                  this.setState({showReq: 'show-req'});
-              }.bind(this)} onMouseLeave={function(){
-                  this.setState({showReq: 'hide-req'});
-              }.bind(this)}>{this.state.reqCount}</b></p>
+              <p>friend requests: <b>{this.state.reqCount}</b></p>
+            <ul>{this.state.req && this.state.req.map(function(req){
+                return <li onClick={this.confirmFriend.bind(this, req)}>{req[0][1]}</li>;
+            }.bind(this))}</ul>
 
-            <p class='missed'>what you missed: <b onMouseOver={function(){
-                  console.log(this.state.missedMsg);
-              }.bind(this)} onMouseLeave={function(){
-                  console.log('hide');
-              }.bind(this)}>{ this.state.missedMsgCount}</b></p>
+            <p class='missed'>what you missed: <b>{ this.state.missedMsgCount}</b></p>
 
-              <div class={this.state.showReq} onMouseOver={function(){
-                  this.setState({showReq: 'show-req'});
-              }.bind(this)} onMouseLeave={function(){
-                  this.setState({showReq: 'hide-req'});
-              }.bind(this)}>
-                  {this.state.req && this.state.req.map(function(req){
-                      return <p onClick={this.confirmFriend.bind(this, req)}>{req[0][1]}</p>;
-                  }.bind(this))}
-              </div>
+            <ul>{this.state.missedMsg && this.state.missedMsg.map(function(missed){
+                  return <li onClick={function(){
+                      this.setState({rec: missed.from});
+                    }.bind(this)}>{missed.from} said: <i>{missed.string}</i></li>;
+              }.bind(this))}</ul>
+
 
               <div id="friends-list">
 
@@ -406,23 +471,64 @@ class ChatAppComponent extends React.Component {
                 <ul>
 
                   {this.state.fullFriends.map(function(user) {
-                      return <li key={user[0].id} value={user[0].name}  onClick={function() {
-                          this.setState({rec: user[0].name});
-                      }.bind(this)}>{user[0].name} ({user[0].status})</li>;
+                    if(user.status === 'online'){
+                      return <li class="active" key={user._id} value={user.name}  onClick={function() {
+                          this.setState({rec: user.name});
+                      }.bind(this)}>{user.name} ({user.status})</li>;
+                    }else {
+                      return <li key={user._id} value={user.name}  onClick={function() {
+                          this.setState({rec: user.name});
+                      }.bind(this)}>{user.name} ({user.status})</li>;
+                    }
                   }.bind(this))}
                 </ul>
 
               </div>
+
+              <p>contact admin</p>
+              <p>admin messages</p>
+              <ul>{this.state.adminMessages.length > 0 && this.state.adminMessages.map(function(msg){
+                  if(msg.status === 'unread'){
+                    return <li class="active" onClick={function(){
+                      fetch('/adminmail?user='+ this.state.user +'&mail=' + msg.id, {
+                          headers: {
+                              'Content-Type': 'application/json'
+                          },
+                          method: 'PUT'
+                      });
+                      }.bind(this)
+                    }>{msg.subject}</li>;
+                  } else {
+                    return <li onClick={function(){
+                        console.log(msg, 'read');
+                      }
+                      }>{msg.subject}</li>;
+                  }
+
+                }.bind(this))}
+
+              </ul>
+
             </div>
 
             <div class="main">
 
-                {this.state.user == undefined || this.state.rec == undefined ? <div class="field"><h1>Welcome to ChatApp!</h1></div> : <div><div class='field'>
+            {this.state.rec === 'admin' && <div>
+              <h1>mail from admin</h1></div>}
 
+            {this.state.user == undefined || this.state.rec == undefined ? <div class="field"><h1>welcome to ChatApp!</h1></div> : <div><div class='field'>
                 {this.state.messages.map(function(msg) {
+                    var message = msg.string.replace(/hora|fitta|skit|jävla|kurva/gi, function(string){
+                      var ret = '';
+                      for(var i = 0; i < string.length; i++){
+                        ret = ret + '*';
+                      }
+                      return ret;
+                    });
+
                     var marker = msg.from === this.state.user ? 'send': 'rec';
                     var sender = msg.from === this.state.user ? 'you': msg.from;
-                    return <p class={marker}><span>{sender}: </span>{msg.string}</p>;
+                    return <p class={marker}><span>{sender}: </span>{message}</p>;
                 }.bind(this))}
             </div>
             <div id="post">
@@ -443,12 +549,12 @@ class ChatAppComponent extends React.Component {
                         }.bind(this))}
                     </div>
                 </div>
-                <textarea value={this.state.string} onChange={function(event){
+                <input value={this.state.string} onChange={function(event){
                     this.setState({string: event.target.value});
                 }.bind(this)} onKeyPress={function(e){
                     if(e.key === 'Enter'){
                         this.sendString();
-                    }}.bind(this)}></textarea>
+                    }}.bind(this)}></input>
 
                 <button onClick={this.sendString}
                 >send</button>
@@ -456,7 +562,59 @@ class ChatAppComponent extends React.Component {
             </div>
             }
 
-            </div>
+          </div>
+
+        </div> : <Admin users={this.state.allUsers}></Admin>
+
+        /* <div class="admin-page">
+        <div id="admin-users">
+        <h1>users</h1>
+        <table class="admin-list"><tbody>
+          {this.state.allUsers.map(function(user){
+            return <tr><td onClick={this.adminHistory.bind(this, user)} key={user._id}> {user.name} </td><td><button onClick={this.adminContact.bind(this, user)}>contact</button></td><td><button onClick={this.adminBan.bind(this, user)}>ban</button></td></tr>;
+          }.bind(this))}
+        </tbody></table>
+        </div>
+
+        <div id="admin-action">
+
+          {this.state.adminAction === 'history' && <div>
+            <h1>history ({this.state.adminUser})</h1>
+            <ul class='admin-ul'>
+              {this.state.adminMessages.length > 0 && this.state.adminMessages.map(function(msg){
+                return <li>{msg.string} ({msg.to}) <button onClick={this.deleteMsg.bind(this, msg)}>delete</button></li>;
+              }.bind(this))}
+            </ul>
+          </div>}
+
+          {this.state.adminAction === 'message' && <div>
+            <h1>contact</h1>
+            <textarea>
+            </textarea>
+            <button>send</button>
+          </div>}
+
+          {this.state.adminAction === 'delete' && <div>
+            <h2>User has been deleted</h2>
+          </div>
+        }
+
+        </div>
+
+        <div id="admin-info">
+          <h1>admin info</h1>
+            <h2>stats</h2>
+            <p>total users: <b> {this.state.allUsers.length}</b></p>
+            <p>users online: <b>{this.state.online.length}</b></p>
+            <p>messages last 24h: <b>{this.state.tfmsg.length}</b></p>
+          <h2>messages</h2>
+
+        </div>
+
+        </div>
+        */
+
+      }
 
         </div>;
     }
