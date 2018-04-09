@@ -91,7 +91,7 @@ class ChatAppComponent extends React.Component {
 
     }
 
-//switching user status to offline when unmounting componen
+//switching user status to offline when unmounting component
     lastCheck(){
         if(this.state.user !== undefined){
             fetch('/status?status=offline&user=' + this.state.user, {
@@ -114,19 +114,19 @@ class ChatAppComponent extends React.Component {
         }
     }
 
-
+    //
     findFriends(){
-
+//get object of current user and look up the 'friends'-key
         var friends = this.state.allUsers.filter(function(me){
             return me.name === this.state.user;
         }.bind(this)).filter(function(friends){
             return friends.friends;
         });
-
+//check which of those friends has status 'confirmed'
         var confirmed = friends[0].friends.filter(function(confirmed){
             return confirmed.status === 'confirmed';
         });
-
+//save those friends under this.state.friends
         this.setState({ friends: confirmed });
 
 var newFriends = '';
@@ -134,7 +134,7 @@ var newFriends = '';
 confirmed.map(function(user){
     return newFriends = newFriends + user.name + '/';
   });
-
+//add the names of friends,separated by / as a string. Use the string to fetch users matching the name of the friends
             fetch('/friends?friend=' + newFriends).then(function (response){
               return response.json();
             }).then(function(result){
@@ -145,7 +145,7 @@ confirmed.map(function(user){
 
   }
 
-
+//update status of friend request on user and friend
     confirmFriend(req){
         this.setState({showReq: 'hide-req' });
         fetch('/confirm?name='+ this.state.user +'&name2=' + req[0][1], {
@@ -166,7 +166,7 @@ confirmed.map(function(user){
     reqFind(){
 
         setInterval(function(){
-
+//set state checked to see when user logged out
             var checked = this.state.allUsers.filter(function(checked){
                 return checked.name == this.state.user;
             }.bind(this)).map(function(since){
@@ -178,7 +178,7 @@ confirmed.map(function(user){
             }, this.missedChat);
 
             if(this.state.user && this.state.password != undefined ) {
-
+//Check for friend requests every second
                 var x = this.state.allUsers.filter(function(user){
                     return user.name === this.state.user;
                 }.bind(this));
@@ -201,7 +201,7 @@ confirmed.map(function(user){
     }
 
     friendRequest(user){
-
+//set friend requests
         this.setState({query: '' });
 
         fetch('/user/' + this.state.user, {
@@ -220,7 +220,7 @@ confirmed.map(function(user){
             method: 'PUT'
         });
     }
-
+//match search against friends with whom you are not friends or have a pending request
     searchFriends(event){
         this.setState({query: event.target.value}, function(){
 
@@ -260,7 +260,7 @@ confirmed.map(function(user){
 
         }.bind(this));
     }
-
+//register a new user if name is not taken and passwords matches
     register(){
         this.setState({user: this.state.newUserInput,
             password: this.state.newPasswordInput }, function(){
@@ -280,7 +280,7 @@ confirmed.map(function(user){
         });
     }
 
-
+//sign in if username matches the password
     signIn(){
         this.setState({user: this.state.userInput,
             password: this.state.passwordInput }, function(){
@@ -291,7 +291,7 @@ confirmed.map(function(user){
             check.length > 0  && check[0].password === this.state.password ? this.setState({login: 'off' }) : this.setState({pwError: <h2>wrong password or username</h2>});
         });
 }
-
+//send string with to and from
     sendString() {
         fetch('/string', {
             body: '{"from": "' + this.state.user + '", "to": "' + this.state.rec + '", "string": "' + this.state.string + '", "stamp":' + Date.now() + '}',
@@ -301,7 +301,7 @@ confirmed.map(function(user){
             method: 'POST'
         }).then(this.testCall.bind(this));
     }
-
+//reset input and scroll to bottom of chat
     testCall() {
         this.setState({string: ''});
         document.getElementsByClassName('field')[0].scrollTop = document.getElementsByClassName('field')[0].scrollHeight;
@@ -309,7 +309,7 @@ confirmed.map(function(user){
     }
 
     componentDidMount(){
-
+//fetch states we need from the beginning
         window.addEventListener('beforeunload', this.lastCheck);
 
         setInterval(function(){
@@ -368,7 +368,7 @@ confirmed.map(function(user){
         }.bind(this), 500, this.reqFind());
 
     }
-
+//set logout key to user when signing out
     componentWillUnmount() {
         this.lastCheck();
         window.removeEventListener('beforeunload', this.lastCheck);
@@ -378,7 +378,8 @@ confirmed.map(function(user){
     render() {
 
         return <div>
-
+{//login
+}
           <div class={this.state.login}>
                 <div class="sign-in">
 
@@ -401,6 +402,8 @@ confirmed.map(function(user){
                             this.setState({register: 'on', signBody: 'off'});
                         }.bind(this)}>Sign Up Now</button>
                     </div>
+    {//register
+    }
                     <div class={this.state.register}>
                         <div class="register">
                           <img src="logo.svg"></img>
@@ -425,7 +428,8 @@ confirmed.map(function(user){
                 </div>
             </div>
 
-
+{//user page
+}
             {this.state.user !=='admin' ? <div>
               <div id="header">
                 <img src="logo-white.svg"></img>
@@ -444,7 +448,8 @@ confirmed.map(function(user){
                     </ul>
                 </div>
             </div>
-
+{//side menu
+}
             <div class="widget">
               <p>friend requests: <b>{this.state.reqCount}</b></p>
             <ul>{this.state.req && this.state.req.map(function(req){
@@ -458,7 +463,6 @@ confirmed.map(function(user){
                       this.setState({rec: missed.from});
                     }.bind(this)}>{missed.from} said: <i>{missed.string}</i></li>;
               }.bind(this))}</ul>
-
 
               <div id="friends-list">
 
@@ -485,11 +489,14 @@ confirmed.map(function(user){
 
               </div>
 
-              <p>contact admin</p>
               <p>admin messages</p>
               <ul>{this.state.adminMessages.length > 0 && this.state.adminMessages.map(function(msg){
                   if(msg.status === 'unread'){
                     return <li class="active" onClick={function(){
+
+                      this.setState({rec: 'admin',
+                                notification: msg});
+
                       fetch('/adminmail?user='+ this.state.user +'&mail=' + msg.id, {
                           headers: {
                               'Content-Type': 'application/json'
@@ -500,8 +507,9 @@ confirmed.map(function(user){
                     }>{msg.subject}</li>;
                   } else {
                     return <li onClick={function(){
-                        console.log(msg, 'read');
-                      }
+                      this.setState({rec: 'admin',
+                                notification: msg});
+                      }.bind(this)
                       }>{msg.subject}</li>;
                   }
 
@@ -509,16 +517,30 @@ confirmed.map(function(user){
 
               </ul>
 
-            </div>
+              <p onClick={function(){
+                  this.setState({rec: 'contactAdmin'});
+                }.bind(this)}>contact admin</p>
 
+            </div>
+{//main body of page
+}
             <div class="main">
 
-            {this.state.rec === 'admin' && <div>
-              <h1>mail from admin</h1></div>}
+              {this.state.rec === 'contactAdmin' && <div class="field">
+                <h1>Contact admin</h1>
+                <input placeholder="Subject"></input><br/>
+                <input placeholder="Report user"></input><br/>
+                <textarea placeholder="Message"></textarea><br/>
+              </div>}
 
-            {this.state.user == undefined || this.state.rec == undefined ? <div class="field"><h1>welcome to ChatApp!</h1></div> : <div><div class='field'>
+            {this.state.rec === 'admin' && <div class="field">
+              <h1>{this.state.notification.subject}</h1>
+              <p>{this.state.notification.message}</p>
+            </div>}
+
+            {this.state.user === undefined || this.state.rec === undefined ? <div class="field"><h1>welcome to ChatApp!</h1></div> : <div><div class='field'>
                 {this.state.messages.map(function(msg) {
-                    var message = msg.string.replace(/hora|fitta|skit|jävla|kurva/gi, function(string){
+                    var message = msg.string.replace(/hora|fitta|skit|jävla|kurwa|spierdalaj/gi, function(string){
                       var ret = '';
                       for(var i = 0; i < string.length; i++){
                         ret = ret + '*';
@@ -531,7 +553,8 @@ confirmed.map(function(user){
                     return <p class={marker}><span>{sender}: </span>{message}</p>;
                 }.bind(this))}
             </div>
-            <div id="post">
+
+            {this.state.rec !== undefined && this.state.rec !== 'admin' && this.state.rec !== 'contactAdmin' && <div id="post">
 
                 <div id="emoji-cont">
                     <div id="emoji-menu" onClick={function(){
@@ -558,12 +581,15 @@ confirmed.map(function(user){
 
                 <button onClick={this.sendString}
                 >send</button>
-            </div>
+            </div>}
+
+
             </div>
             }
 
           </div>
-
+{//admin page
+}
         </div> : <Admin users={this.state.allUsers}></Admin>
 
         /* <div class="admin-page">
