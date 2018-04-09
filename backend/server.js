@@ -4,7 +4,7 @@ var app = express();
 var database;
 var bodyParser = require('body-parser');
 var path = require('path');
-//var ObjectId = require('mongodb').ObjectID;
+var ObjectId = require('mongodb').ObjectID;
 
 app.use('/', express.static(path.join(path.resolve(), 'public')));
 app.use(express.static('../'));
@@ -22,7 +22,16 @@ MongoClient.connect('mongodb://localhost:27017',
     }
   });
 
+app.get('/adminstring', function (request, response) {
 
+  database.collection('string').find({ from: request.query.from }).toArray(function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
+    }
+  });
+});
 
 app.get('/string', function (request, response) {
 
@@ -74,7 +83,14 @@ app.get('/user', function (request, response) {
 });
 
 app.get('/friends', function (request, response) {
-  database.collection('user').find({name: request.query.friend }).toArray(function (error, result) {
+  var query = [];
+  var array = request.query.friend.split('/');
+
+  array.map(function(name) {
+    return query.push({'name': name });
+  });
+
+  database.collection('user').find({ $or: query }).toArray(function (error, result) {
     if (error) {
       console.log(error);
     }else {
@@ -83,6 +99,15 @@ app.get('/friends', function (request, response) {
   });
 });
 
+app.get('/tfmsg', function (request, response) {
+  database.collection('string').find({'stamp':{$gt: Number(request.query.time) } }).toArray(function (error, result) {
+    if (error) {
+      console.log(error);
+    }else {
+      response.send(result);
+    }
+  });
+});
 
 
 app.get('/allmsg', function (request, response) {
@@ -195,6 +220,55 @@ app.put('/check', function (request, response) {
         console.log(error);
       }else {
         response.send(result);
+      }
+    });
+});
+
+app.put('/adminmail:id', function (request, response) {
+  database.collection('user').update(
+    {_id: new ObjectId(request.params.id)},
+    {$push: {mail: request.body}},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send(result);
+      }
+    });
+});
+
+app.put('/adminmail', function (request, response) {
+
+  database.collection('user').update(
+    {name: request.query.user, 'mail.id' : request.query.mail},
+    {$set: {'mail.$.status': 'read'}},{multi: true},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send(result);
+      }
+    });
+});
+
+app.delete('/deleteuser:id', function (request, response) {
+  database.collection('user').remove(
+    {_id: new ObjectId(request.params.id)}, function (error) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send({});
+      }
+    });
+});
+
+app.delete('/deletemessage:id', function (request, response) {
+  database.collection('string').remove(
+    {_id: new ObjectId(request.params.id)}, function (error) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send({});
       }
     });
 });

@@ -130,7 +130,7 @@ li{
 }
 
 li:hover{
-  background-color: #91D8D6;
+  background-color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
 }
 
@@ -171,26 +171,24 @@ li:hover{
 }
 
 .widget {
-    background-color: #def2f4;
-    margin-left: 2vw;
-    height: 80vh;
-    float: right;
-    width: 25vw;
-    padding: 2em;
+  margin-left: 5vw;
+  margin-top: 5vh;
+  height: 80vh;
+  float: right;
+  width: 25vw;
 }
 
 .main {
-    background-color: white;
-    margin-top: 5vh;
-    height: 80vh;
-    float: left;
-    width: 65vw;
-
+  margin-top: 5vh;
+  height: 80vh;
+  float: left;
+  width: 70vw;
 }
 
 .field {
   margin-left: 5vw;
   background-color: white;
+  padding-left: 3em;
   width: 60vw;
   height: 50vh;
   overflow: scroll;
@@ -204,8 +202,6 @@ li:hover{
   border-radius: 0.2em;
   background-color: #91D8D6;
   color: white;
-  clear: left;
-  width: 60%;
 }
 
 .send {
@@ -214,11 +210,7 @@ li:hover{
   text-align: right;
   margin-right: 0;
   margin-left: auto;
-  clear: right;
-  width: 60%;
-  background-color: #def2f4;
 }
-
 
 #post{
   margin-left: 3em;
@@ -226,22 +218,15 @@ li:hover{
   height: 2em;
   width: 60vw;
 }
-#post textarea{
-  height: 10vh;
-  width: 70%;
+#post input{
+  height: 100%;
+  width: 75%;
 }
 
 #post button{
-  height: 10vh;
+  height: 100%;
   width: 20%;
   box-sizing: content-box;
-  margin-top: -0.1em;
-  float: right;
-}
-
-.textbutton {
-    height: 100%;
-    width: 100%;
 }
 
 #hide-emos{
@@ -252,87 +237,57 @@ li:hover{
   display: block;
 }
 
-@media (max-width: 933px) {
-
-    #post textarea{
-      height: 10vh;
-      width: 100%;
-    }
-
-    #post > button{
-      height: 5vh;
-      width: 90%;
-      box-sizing: content-box;
-      margin-top: -0.1em;
-      float: left;
-    }
+.admin-page {
+  margin: 2vw;
 }
 
-@media (max-width: 800px) {
-
-    .field {
-      margin-left: 5vw;
-      background-color: white;
-      width: 90vw;
-      height: 50vh;
-      overflow: scroll;
-      padding-top: 2em;
-      padding-bottom: 2em;
-    }
-
-    #post{
-      margin-left: 3em;
-      margin-bottom: 3em;
-      height: 2em;
-      width: 90%;
-    }
-
-    #post textarea{
-      height: 10vh;
-      width: 70%;
-    }
-
-    #post button{
-      height: 10vh;
-      width: 20%;
-      box-sizing: content-box;
-      margin-top: -0.1em;
-      float: right;
-    }
-
-    .main {
-        width: 100%;
-    }
-    .widget {
-        display: none;
-    }
+.admin-list button {
+  font-size: 0.8em;
+  padding: 0.5em;
+  margin: 0.2em;
+  border-radius: 0.2em;
 }
 
-@media (max-width: 622px) {
-    #post{
-      margin-left: 3em;
-      margin-bottom: 3em;
-      height: 2em;
-      width: 60vw;
-    }
-    #post textarea{
-      height: 10vh;
-      width: 70%;
-    }
-
-    #post button{
-      height: 10vh;
-      width: 20%;
-      box-sizing: content-box;
-      margin-top: -0.1em;
-      float: right;
-    }
+.admin-ul li{
+  width: 35vw;
 }
 
-.main {
-    width: 100%;
+.admin-ul button{
+  margin: 0.1em;
 }
-.widget {
-    display: none;
+
+#admin-users {
+  float: left;
+  width: 20vw;
+  max-height: 60vh;
+  overflow: scroll;
 }
+
+#admin-action{
+  float: left;
+  width: 40vw;
+  max-height: 60vh;
+  overflow: scroll;
+}
+
+#admin-action textarea{
+  width: 35vw;
+  height: 20vh;
+}
+
+#admin-subject {
+  width: 20vw;
+  height: 2vh;
+  margin-bottom: 2vh;
+}
+
+#admin-info{
+  float: right;
+  width: 30vw;
+  max-height: 60vh;
+  overflow: scroll;
+}
+
+.active {
+  background-color: #91D8D6;
 }
