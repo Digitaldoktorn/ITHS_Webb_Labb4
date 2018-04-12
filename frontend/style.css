@@ -146,19 +146,7 @@ b {
   text-align: center;
   left: 35%;
   width: 30%;
-  top: 15%;
   background: lightgrey;
-}
-
-.search-result li {
-  width: 100%;
-}
-
-ul{
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-padding-start: 0;
-    list-style: none;
 }
 
 li{
@@ -172,6 +160,28 @@ li{
   width: 115px;
   color: #333;
 }
+
+
+.search-result li {
+  width: 100%;
+  border-left: none;
+  padding-left: 0;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+*:focus {
+    outline: none;
+}
+
+ul{
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0;
+    list-style: none;
+}
+
+
 
 li:hover{
   background-color: rgba(255, 255, 255, 0.7);
