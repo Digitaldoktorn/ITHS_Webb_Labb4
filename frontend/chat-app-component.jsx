@@ -404,7 +404,7 @@ confirmed.map(function(user){
                                 <button onClick={this.signIn}>Log in</button><br/>
                                 {this.state.pwError}
 
-                        <p>Not a member? No problem, you can register in just a few clicks!</p>
+                        <p>Not a member? No problem! Easily register in a few clicks!</p>
 
                         <button onClick={function(){
                             this.setState({register: 'on', signBody: 'off'});

@@ -36,7 +36,7 @@ img {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 
 .sign-body input {
@@ -176,7 +176,7 @@ b {
 
 .login-and-menu p {
     float: right;
-    padding-right: 1em;
+    padding-right: 2em;
 }
 
 #header .search-friends > p {
