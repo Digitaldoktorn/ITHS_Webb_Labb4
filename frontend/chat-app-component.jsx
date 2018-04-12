@@ -392,7 +392,7 @@ confirmed.map(function(user){
                         <input type="password" placeholder="password" value={this.state.passwordInput} onChange={function(event){
                             this.setState({passwordInput: event.target.value});
                         }.bind(this)}></input><br/>
-                        <button onClick={this.signIn}>log in</button><br/>
+                    <button id="login-button" onClick={this.signIn}>log in</button><br/>
                         {this.state.pwError}
 
                         <p>Not a member? No problem, you can register in just a few clicks!</p>
@@ -406,7 +406,7 @@ confirmed.map(function(user){
                     <div class={this.state.register}>
                         <div class="register">
                           <img src="logo.svg"></img>
-                            <h3>Thank you for choosing chatApp</h3>
+                            <h3>Thank you for choosing ChatApp!</h3>
                             <p>Just fill out the form and you are good to go!</p>
                             <input placeholder="username" value={this.state.newUserInput} onChange={function(event){
                                 this.setState({newUserInput: event.target.value});
