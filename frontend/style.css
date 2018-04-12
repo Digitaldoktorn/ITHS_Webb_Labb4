@@ -41,6 +41,43 @@ img {
 
 .sign-body input {
   margin-bottom: 0.5em;
+  font-size: 1.2rem;
+  border-radius: 1em;
+  border: none;
+  border-bottom: 3px solid #91D8D6;
+  padding: 1em;
+  background: transparent;
+}
+
+.sign-body button {
+    font-size: 20px;
+}
+
+#login-button {
+    font-size: 20px;
+    padding: 1em;
+}
+
+.register input {
+    margin-bottom: 0.5em;
+    font-size: 1.2rem;
+    border-radius: 1em;
+    border: none;
+    border-bottom: 3px solid #91D8D6;
+    padding: 1em;
+    background: transparent;
+}
+
+.register button {
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 20px;
+}
+
+.sign-body input::placeholder {
+    color: lightgrey;
+    text-align: center;
+
 }
 
 .register p {
@@ -146,19 +183,7 @@ b {
   text-align: center;
   left: 35%;
   width: 30%;
-  top: 15%;
   background: lightgrey;
-}
-
-.search-result li {
-  width: 100%;
-}
-
-ul{
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-padding-start: 0;
-    list-style: none;
 }
 
 li{
@@ -172,6 +197,28 @@ li{
   width: 115px;
   color: #333;
 }
+
+
+.search-result li {
+  width: 100%;
+  border-left: none;
+  padding-left: 0;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+*:focus {
+    outline: none;
+}
+
+ul{
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0;
+    list-style: none;
+}
+
+
 
 li:hover{
   background-color: rgba(255, 255, 255, 0.7);
@@ -267,8 +314,9 @@ li:hover{
   height: 2em;
   width: 60vw;
 }
+
 #post textarea{
-  height: 10vh;
+  height: 15vh;
   width: 75%;
 }
 
