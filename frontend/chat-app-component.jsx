@@ -433,7 +433,7 @@ confirmed.map(function(user){
               <div id="header">
                 <div class="header-logo"><img src="logo-white.svg"></img></div>
                 <div class="search-friends"><p class="instruct">send friend request</p>
-                <div class="search-div"><input class="search-bar" placeholder="search users" value={this.state.query} onChange={this.searchFriends}/></div>
+                <div class="search-div"><input class="search-bar" placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
                 <div class="search-result">
                     <ul>
                         {this.state.query !=='' &&
@@ -442,7 +442,9 @@ confirmed.map(function(user){
                              </li>;
                          }.bind(this))}
                     </ul>
-                </div></div>
+                </div>
+            </div>
+        </div>
               <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p></div>
             </div>
 {//side menu
