@@ -421,7 +421,10 @@ confirmed.map(function(user){
 
                             <input type="password" placeholder="confirm password" value={this.state.confirmNewPasswordInput} onChange={function(event){
                                 this.setState({confirmNewPasswordInput: event.target.value});
-                            }.bind(this)}></input><br/>
+                            }.bind(this)} onKeyPress={function(e) {
+                              if(e.key === 'Enter'){
+                                this.register();
+                              }}.bind(this)}></input><br/>
 
                             <button onClick={this.register}>register</button>
                         </div>
