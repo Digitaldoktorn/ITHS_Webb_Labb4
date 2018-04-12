@@ -452,7 +452,7 @@ confirmed.map(function(user){
             </div>
         </div>
               <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p>
-               <a id="menu-bars" href="" onClick={this.menuClick}><i class="fa fa-bars" aria-hidden="true"></i></a>
+               <a id="menu-bars" href="" onClick={this.menuClick}><i class="fas fa-user"></i></a>
                <a id="sign-off" href=""><i class="fas fa-sign-out-alt"></i></a>
            </div>
             </div>

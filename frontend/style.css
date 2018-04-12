@@ -102,7 +102,7 @@ button {
 }
 
 #menu-bars {
-    position: fixed;
+    position: absolute;
     font-size: 2rem;
     top: 5rem;
     right: 5rem;
@@ -111,7 +111,7 @@ button {
 }
 
 #sign-off {
-    position: fixed;
+    position: absolute;
     font-size: 2rem;
     top: 5rem;
     right: 2rem;
