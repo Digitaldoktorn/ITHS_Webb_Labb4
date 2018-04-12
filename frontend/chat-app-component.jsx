@@ -2,6 +2,7 @@ var React = require('react');
 //var Login = require('./login-component.jsx');
 var Admin = require('./admin-component.jsx');
 
+
 require('./style.css');
 
 class ChatAppComponent extends React.Component {
@@ -41,6 +42,7 @@ class ChatAppComponent extends React.Component {
         this.findFriends = this.findFriends.bind(this);
         this.lastCheck = this.lastCheck.bind(this);
         this.missedChat = this.missedChat.bind(this);
+        this.menuClick = this.menuClick.bind(this);
         /*this.adminContact = this.adminContact.bind(this);
         this.adminBan = this.adminBan.bind(this);
         this.adminHistory = this.adminHistory.bind(this);
@@ -307,6 +309,10 @@ confirmed.map(function(user){
 
     }
 
+    menuClick() {
+
+    }
+
     componentDidMount(){
 //fetch states we need from the beginning
         window.addEventListener('beforeunload', this.lastCheck);
@@ -384,7 +390,7 @@ confirmed.map(function(user){
 
                     <div class={this.state.signBody}>
                       <img src="logo.svg"></img>
-                        <h3>log in</h3>
+                        <h3 id="login-text">Log in</h3>
                         <input placeholder="user name" value={this.state.userInput} onChange={function(event){
                             this.setState({userInput: event.target.value});
                         }.bind(this)}></input><br/>
@@ -451,7 +457,10 @@ confirmed.map(function(user){
                 </div>
             </div>
         </div>
-              <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p></div>
+              <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p>
+               <a id="menu-bars" href="" onClick={this.menuClick}><i class="fas fa-user"></i></a>
+               <a id="sign-off" href=""><i class="fas fa-sign-out-alt"></i></a>
+           </div>
             </div>
 {//side menu
 }
