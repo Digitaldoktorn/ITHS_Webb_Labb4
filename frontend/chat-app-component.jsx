@@ -391,9 +391,12 @@ confirmed.map(function(user){
 
                         <input type="password" placeholder="password" value={this.state.passwordInput} onChange={function(event){
                             this.setState({passwordInput: event.target.value});
-                        }.bind(this)}></input><br/>
-                    <button id="login-button" onClick={this.signIn}>log in</button><br/>
-                        {this.state.pwError}
+                          }.bind(this)} onKeyPress={function(e) {
+                                  if(e.key === 'Enter'){
+                                    this.signIn();
+                                  }}.bind(this)}></input><br/>
+                                <button onClick={this.signIn}>log in</button><br/>
+                                {this.state.pwError}
 
                         <p>Not a member? No problem, you can register in just a few clicks!</p>
 
