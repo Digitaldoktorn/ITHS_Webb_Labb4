@@ -31,7 +31,7 @@ class ChatAppComponent extends React.Component {
             emojis: ['😀', '😂', '😊', '😍', '😜', '😎', '😡', '😳' ],
             adminMessages: []
         };
-  //binding my functions
+        
         this.sendString = this.sendString.bind(this);
         this.testCall = this.testCall.bind(this);
         this.register = this.register.bind(this);
@@ -433,12 +433,9 @@ confirmed.map(function(user){
 }
             {this.state.user !=='admin' ? <div>
               <div id="header">
-                <img src="logo-white.svg"></img>
-                <p>logged in as: <b>{this.state.user}</b></p>
-                <p class="instruct">send friend request</p>
-                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
-
-
+                <div class="header-logo"><img src="logo-white.svg"></img></div>
+                <div class="search-friends"><p class="instruct">send friend request</p>
+                <div class="search-div"><input class="search-bar" placeholder="search users" value={this.state.query} onChange={this.searchFriends}/></div>
                 <div class="search-result">
                     <ul>
                         {this.state.query !=='' &&
@@ -447,7 +444,8 @@ confirmed.map(function(user){
                              </li>;
                          }.bind(this))}
                     </ul>
-                </div>
+                </div></div>
+              <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p></div>
             </div>
 {//side menu
 }
@@ -573,12 +571,12 @@ confirmed.map(function(user){
                         }.bind(this))}
                     </div>
                 </div>
-                <input value={this.state.string} onChange={function(event){
+                <textarea value={this.state.string} onChange={function(event){
                     this.setState({string: event.target.value});
                 }.bind(this)} onKeyPress={function(e){
                     if(e.key === 'Enter'){
                         this.sendString();
-                    }}.bind(this)}></input>
+                    }}.bind(this)}></textarea>
 
                 <button onClick={this.sendString}
                 >send</button>
