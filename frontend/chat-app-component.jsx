@@ -29,7 +29,7 @@ class ChatAppComponent extends React.Component {
             emojis: ['😀', '😂', '😊', '😍', '😜', '😎', '😡', '😳' ],
             adminMessages: []
         };
-        
+
         this.sendString = this.sendString.bind(this);
         this.testCall = this.testCall.bind(this);
         this.register = this.register.bind(this);
