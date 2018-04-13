@@ -4,6 +4,7 @@ var Admin = require('./admin-component.jsx');
 
 
 require('./style.css');
+var UserProfile = require('./user_profile.jsx');
 
 class ChatAppComponent extends React.Component {
 
@@ -386,6 +387,7 @@ confirmed.map(function(user){
 {//login
 }
           <div class={this.state.login}>
+
                 <div class="sign-in">
 
                     <div class={this.state.signBody}>
@@ -443,9 +445,21 @@ confirmed.map(function(user){
 }
             {this.state.user !=='admin' ? <div>
               <div id="header">
+<<<<<<< HEAD
+                <img src="logo-white.svg"></img>
+                <div>
+                  <UserProfile/>
+                </div>
+                <p>logged in as: <b>{this.state.user}</b></p>
+                <p class="instruct">send friend request</p>
+                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
+
+
+=======
                 <div class="header-logo"><img src="logo-white.svg"></img></div>
                 <div class="search-friends"><p class="instruct">Send friend request</p>
                 <div class="search-div"><input class="search-bar" placeholder="Search users" value={this.state.query} onChange={this.searchFriends}/>
+>>>>>>> 86d4b2141f8733f67cf340f99a2aafb58afc4ac5
                 <div class="search-result">
                     <ul>
                         {this.state.query !=='' &&
@@ -482,7 +496,7 @@ confirmed.map(function(user){
 
                 <p onClick={function(){
                     this.setState({rec: 'public'});
-                  }.bind(this)}>Public Chat</p>
+                  }.bind(this)}>Private Chat</p>
 
                 {this.state.friends.length > 0 ? <p>Your friends: </p> : <p> No friends yet</p>}
 
@@ -596,11 +610,18 @@ confirmed.map(function(user){
                     }}.bind(this)}></textarea>
 
                 <button onClick={this.sendString}
+<<<<<<< HEAD
+                >send</button>
+                </div>
+            </div>
+
+=======
                 >Send</button>
             </div>}
 
 
             </div>
+>>>>>>> 86d4b2141f8733f67cf340f99a2aafb58afc4ac5
             }
 
           </div>

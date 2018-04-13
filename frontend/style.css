@@ -504,3 +504,126 @@ li:hover{
        display: none;
    }
 }
+/* -- Slideout Sidebar -- */
+
+.slideout-sidebar {
+  position: fixed;
+  top: 0;
+  right: -190px;
+  z-index: 0;
+  width: 150px;
+  height: 100%;
+  padding: 20px;
+  background-color: #417bd8;
+  transition: all 300ms ease-in-out;
+}
+
+
+.slideout-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideout-sidebar ul li {
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(244,244,244,0.4);
+  color: rgba(244,244,244,0.7);
+}
+
+.slideout-sidebar ul li:last-child {
+  border-bottom: 0;
+}
+
+.slideout-sidebar ul li:hover {
+  color: #1c7c70;
+  background-color: #91D8D6;
+}
+#menu-toggle {
+  display: none;
+
+}
+
+.menu-icon {
+  position: absolute;
+  top: 18px;
+  right: 30px;
+  font-size: 24px;
+  z-index: 1;
+  transition: all 300ms ease-in-out;
+}
+
+
+#menu-toggle:checked ~ .slideout-sidebar {
+  right: 0px;
+}
+
+#menu-toggle:checked + .menu-icon {
+  right: 210px;
+}
+
+
+#edited_Profile {
+    background-color: #bce2e5;
+    margin: auto;
+    padding: 0px;
+    border: 1px solid #888;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    left: 0px;
+    top: 270px;
+}
+#user_foto {
+  border-radius: 50%;
+  border: solid 1px white;
+}
+.profile_font {
+  font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
+  font-size: 14px;
+  color: white;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+}
+.editfield_font {
+  font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
+  font-size: 14px;
+  color: black;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.closeButton {
+  display: none;
+}
+#input_fields {
+  position: absolute;
+  left: 0px;
+  top: 30px;
+  background-color: #bce2e5;
+  margin: auto;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+ #input_fields input  {
+  position: relative;
+  left: 15px;
+  top:3px;
+  border: none;
+
+}
