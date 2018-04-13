@@ -279,6 +279,12 @@ li:hover{
   display: none;
 }
 
+/* new class for styling the showing of friend requests (Anders) */
+.requests {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9em;
+}
+
 .widget {
   background-color: #def2f4;
   margin-left: 2vw;

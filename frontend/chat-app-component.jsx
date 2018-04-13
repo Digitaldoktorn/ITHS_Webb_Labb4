@@ -467,7 +467,7 @@ confirmed.map(function(user){
             <div class="widget">
               <p>Friend requests: <b>{this.state.reqCount}</b></p>
             <ul>{this.state.req && this.state.req.map(function(req){
-                return <li onClick={this.confirmFriend.bind(this, req)}>{req[0][1]}</li>;
+                return <li class="requests" onClick={this.confirmFriend.bind(this, req)}>{req[0][1]}</li>;
             }.bind(this))}</ul>
 
           <p class='missed'>What you've missed: <b>{ this.state.missedMsgCount}</b></p>
