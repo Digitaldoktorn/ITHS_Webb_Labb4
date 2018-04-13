@@ -426,20 +426,13 @@ confirmed.map(function(user){
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <div id="header">
-                <img src="logo-white.svg"></img>
-
-                <div id="user_profile">
-                  <UserProfile/>
-                </div>
-
-=======
 
             {this.state.user !=='admin' ? <div>
               <div id="header">
                 <img src="logo-white.svg"></img>
->>>>>>> 613789fc1664e62fe063918bb7b8e9fe2be654b9
+                <div>
+                  <UserProfile/>
+                </div>
                 <p>logged in as: <b>{this.state.user}</b></p>
                 <p class="instruct">send friend request</p>
                 <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
@@ -560,12 +553,7 @@ confirmed.map(function(user){
                         }.bind(this))}
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div class="textbutton">
-                <textarea value={this.state.string} onChange={function(event){
-=======
                 <input value={this.state.string} onChange={function(event){
->>>>>>> 613789fc1664e62fe063918bb7b8e9fe2be654b9
                     this.setState({string: event.target.value});
                 }.bind(this)} onKeyPress={function(e){
                     if(e.key === 'Enter'){
@@ -576,7 +564,7 @@ confirmed.map(function(user){
                 >send</button>
                 </div>
             </div>
-            </div>
+
             }
 
           </div>

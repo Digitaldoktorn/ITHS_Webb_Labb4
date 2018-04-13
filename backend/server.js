@@ -140,15 +140,7 @@ app.post('/user', function (request, response) {
   });
 });
 
-app.get('/user', function (request, response) {
-  database.collection('user').find({ 'name': { $exists: true }}).toArray(function (error, result) {
-    if (error) {
-      console.log(error);
-    }else {
-      response.send(result);
-    }
-  });
-});
+
 
 
 app.delete('/user', function (request, response) {
@@ -223,6 +215,21 @@ app.put('/check', function (request, response) {
       }
     });
 });
+
+app.put('/updateuser', function (request, response) {
+  database.collection('user').update(
+    {name: request.query.user},
+    {$set: {'name': request.query.updatename, 'password': request.query.updatepassword, 'age': request.query.updateage, 'email': request.query.updatemail} },
+
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }else {
+        response.send(result);
+      }
+    });
+});
+
 
 app.put('/adminmail:id', function (request, response) {
   database.collection('user').update(
