@@ -36,11 +36,48 @@ img {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 
 .sign-body input {
   margin-bottom: 0.5em;
+  font-size: 1.2rem;
+  border-radius: 1em;
+  border: none;
+  border-bottom: 3px solid #91D8D6;
+  padding: 1em;
+  background: transparent;
+}
+
+.sign-body button {
+    font-size: 20px;
+}
+
+#login-button {
+    font-size: 20px;
+    padding: 1em;
+}
+
+.register input {
+    margin-bottom: 0.5em;
+    font-size: 1.2rem;
+    border-radius: 1em;
+    border: none;
+    border-bottom: 3px solid #91D8D6;
+    padding: 1em;
+    background: transparent;
+}
+
+.register button {
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 20px;
+}
+
+.sign-body input::placeholder {
+    color: lightgrey;
+    text-align: center;
+
 }
 
 .register p {
@@ -64,6 +101,24 @@ button {
     font-weight: 800;
 }
 
+#menu-bars {
+    position: absolute;
+    font-size: 2rem;
+    top: 5rem;
+    right: 5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+#sign-off {
+    position: absolute;
+    font-size: 2rem;
+    top: 5rem;
+    right: 2rem;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
 button:hover {
   background-color: #539B97;
   transition: 0.5s;
@@ -75,9 +130,56 @@ button:hover {
   background-color: #91D8D6;
 }
 
-#header > p {
-  margin: 0;
-  position: absolute;
+.header-logo {
+  flex-grow: 1;
+  width: 20%;
+  height: 100%;
+  float: left;
+}
+
+.search-friends {
+  flex-grow: 2;
+  width: 60%;
+  height: 15vh;
+  float: left;
+  text-align: center;
+}
+
+.search-div {
+  width: 100%;
+}
+
+.search-bar {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 1.5rem;
+  width: 60%;
+  margin-top: 1em;
+}
+
+.search-div > .search-bar::placeholder {
+  color: white;
+}
+
+b {
+  color: white;
+}
+
+.login-and-menu {
+  flex-grow: 2;
+  width: 20%;
+  height: 15vh;
+  float: right;
+}
+
+.login-and-menu p {
+    float: right;
+    padding-right: 3.2em;
+}
+
+#header .search-friends > p {
   color: white;
   right: 15px;
   top: 10px;
@@ -87,34 +189,19 @@ button:hover {
 
 
 #header p.instruct {
+    color: white;
   top: 30px;
-  color: black;
   font-size: 1em;
 }
 
-#header input {
-  position: absolute;
-  right: 15px;
-  top: 55px;
-}
 
 .search-result {
   background-color: rgba(255, 255, 255, 0.7);
   position: fixed;
-  top: 72px;
-  right: 15px;
-  width: 125px;
-  z-index: 10;
-  border-bottom: 1px solid rgb(238, 238, 238);
-  border-left: 1px solid rgb(238, 238, 238);
-  border-right: 1px solid rgb(238, 238, 238);
-}
-
-ul{
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-padding-start: 0;
-    list-style: none;
+  text-align: center;
+  left: 35%;
+  width: 30%;
+  background: lightgrey;
 }
 
 li{
@@ -128,6 +215,28 @@ li{
   width: 115px;
   color: #333;
 }
+
+
+.search-result li {
+  width: 100%;
+  border-left: none;
+  padding-left: 0;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+*:focus {
+    outline: none;
+}
+
+ul{
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-padding-start: 0;
+    list-style: none;
+}
+
+
 
 li:hover{
   background-color: rgba(255, 255, 255, 0.7);
@@ -171,24 +280,24 @@ li:hover{
 }
 
 .widget {
-  margin-left: 5vw;
-  margin-top: 5vh;
+  background-color: #def2f4;
+  margin-left: 2vw;
   height: 80vh;
   float: right;
   width: 25vw;
+  padding: 2em;
 }
 
 .main {
-  margin-top: 5vh;
+  background-color: white;
   height: 80vh;
   float: left;
-  width: 70vw;
+  width: 65vw;
 }
 
 .field {
   margin-left: 5vw;
   background-color: white;
-  padding-left: 3em;
   width: 60vw;
   height: 50vh;
   overflow: scroll;
@@ -197,19 +306,24 @@ li:hover{
 }
 
 .rec {
-  padding: 0.2em;
+  padding: 1.2em;
   text-align: left;
   border-radius: 0.2em;
   background-color: #91D8D6;
   color: white;
+  clear: left;
+  width: 60%;
 }
 
 .send {
-  padding: 0.2em;
+  padding: 1.2em;
   border-radius: 0.2em;
   text-align: right;
   margin-right: 0;
   margin-left: auto;
+  clear: right;
+  width: 60%;
+  background-color: #def2f4;
 }
 
 #post{
@@ -218,15 +332,23 @@ li:hover{
   height: 2em;
   width: 60vw;
 }
-#post input{
-  height: 100%;
+
+#post textarea{
+  height: 15vh;
   width: 75%;
 }
 
 #post button{
-  height: 100%;
+  height: 10vh;
   width: 20%;
   box-sizing: content-box;
+  margin-top: -0.1em;
+  float: right;
+}
+
+.textbutton {
+  height: 100%;
+  width: 100%;
 }
 
 #hide-emos{
@@ -290,6 +412,91 @@ li:hover{
 
 .active {
   background-color: #91D8D6;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9em;
+}
+
+@media (max-width: 933px) {
+
+   #post textarea{
+     height: 10vh;
+     width: 100%;
+   }
+
+   #post > button{
+     height: 5vh;
+     width: 90%;
+     box-sizing: content-box;
+     margin-top: -0.1em;
+     float: left;
+   }
+}
+
+@media (max-width: 800px) {
+
+   .field {
+     margin-left: 5vw;
+     background-color: white;
+     width: 90vw;
+     height: 50vh;
+     overflow: scroll;
+     padding-top: 2em;
+     padding-bottom: 2em;
+   }
+
+   #post{
+     margin-left: 3em;
+     margin-bottom: 3em;
+     height: 2em;
+     width: 90%;
+   }
+
+   #post textarea{
+     height: 10vh;
+     width: 70%;
+   }
+
+   #post button{
+     height: 10vh;
+     width: 20%;
+     box-sizing: content-box;
+     margin-top: -0.1em;
+     float: right;
+   }
+
+   .main {
+       width: 100%;
+   }
+   .widget {
+       display: none;
+   }
+}
+
+@media (max-width: 622px) {
+   #post{
+     margin-bottom: 3em;
+     height: 2em;
+     width: 100vw;
+   }
+   #post textarea{
+     height: 10vh;
+     width: 70%;
+   }
+
+   #post button{
+     height: 10vh;
+     width: 30%;
+     box-sizing: content-box;
+     margin-top: -0.1em;
+     float: right;
+   }
+
+   .main {
+       width: 100%;
+   }
+   .widget {
+       display: none;
+   }
 }
 /* -- Slideout Sidebar -- */
 
