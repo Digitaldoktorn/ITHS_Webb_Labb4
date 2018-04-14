@@ -2,7 +2,9 @@ var React = require('react');
 //var Login = require('./login-component.jsx');
 var Admin = require('./admin-component.jsx');
 
+
 require('./style.css');
+var UserProfile = require('./user_profile.jsx');
 
 class ChatAppComponent extends React.Component {
 
@@ -41,6 +43,7 @@ class ChatAppComponent extends React.Component {
         this.findFriends = this.findFriends.bind(this);
         this.lastCheck = this.lastCheck.bind(this);
         this.missedChat = this.missedChat.bind(this);
+        this.menuClick = this.menuClick.bind(this);
         /*this.adminContact = this.adminContact.bind(this);
         this.adminBan = this.adminBan.bind(this);
         this.adminHistory = this.adminHistory.bind(this);
@@ -307,6 +310,10 @@ confirmed.map(function(user){
 
     }
 
+    menuClick() {
+
+    }
+
     componentDidMount(){
 //fetch states we need from the beginning
         window.addEventListener('beforeunload', this.lastCheck);
@@ -380,33 +387,37 @@ confirmed.map(function(user){
 {//login
 }
           <div class={this.state.login}>
+
                 <div class="sign-in">
 
                     <div class={this.state.signBody}>
                       <img src="logo.svg"></img>
-                        <h3>log in</h3>
-                        <input placeholder="user name" value={this.state.userInput} onChange={function(event){
+                        <h3 id="login-text">Log in</h3>
+                        <input placeholder="User name" value={this.state.userInput} onChange={function(event){
                             this.setState({userInput: event.target.value});
                         }.bind(this)}></input><br/>
 
-                        <input type="password" placeholder="password" value={this.state.passwordInput} onChange={function(event){
+                      <input type="password" placeholder="Password" value={this.state.passwordInput} onChange={function(event){
                             this.setState({passwordInput: event.target.value});
-                        }.bind(this)}></input><br/>
-                        <button onClick={this.signIn}>log in</button><br/>
-                        {this.state.pwError}
+                          }.bind(this)} onKeyPress={function(e) {
+                                  if(e.key === 'Enter'){
+                                    this.signIn();
+                                  }}.bind(this)}></input><br/>
+                                <button onClick={this.signIn}>Log in</button><br/>
+                                {this.state.pwError}
 
-                        <p>Not a member? No problem, you can register in just a few clicks!</p>
+                        <p>Not a member? No problem! Easily register in a few clicks!</p>
 
                         <button onClick={function(){
                             this.setState({register: 'on', signBody: 'off'});
-                        }.bind(this)}>Sign Up Now</button>
+                        }.bind(this)}>Sign up now</button>
                     </div>
     {//register
     }
                     <div class={this.state.register}>
                         <div class="register">
                           <img src="logo.svg"></img>
-                            <h3>Thank you for choosing chatApp</h3>
+                            <h3>Thank you for choosing ChatApp!</h3>
                             <p>Just fill out the form and you are good to go!</p>
                             <input placeholder="username" value={this.state.newUserInput} onChange={function(event){
                                 this.setState({newUserInput: event.target.value});
@@ -418,7 +429,10 @@ confirmed.map(function(user){
 
                             <input type="password" placeholder="confirm password" value={this.state.confirmNewPasswordInput} onChange={function(event){
                                 this.setState({confirmNewPasswordInput: event.target.value});
-                            }.bind(this)}></input><br/>
+                            }.bind(this)} onKeyPress={function(e) {
+                              if(e.key === 'Enter'){
+                                this.register();
+                              }}.bind(this)}></input><br/>
 
                             <button onClick={this.register}>register</button>
                         </div>
@@ -431,9 +445,21 @@ confirmed.map(function(user){
 }
             {this.state.user !=='admin' ? <div>
               <div id="header">
+
+                <img src="logo-white.svg"></img>
+                <div>
+                  <UserProfile/>
+                </div>
+                <p>logged in as: <b>{this.state.user}</b></p>
+                <p class="instruct">send friend request</p>
+                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
+
+
+
                 <div class="header-logo"><img src="logo-white.svg"></img></div>
-                <div class="search-friends"><p class="instruct">send friend request</p>
-                <div class="search-div"><input class="search-bar" placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
+                <div class="search-friends"><p class="instruct">Send friend request</p>
+                <div class="search-div"><input class="search-bar" placeholder="Search users" value={this.state.query} onChange={this.searchFriends}/>
+
                 <div class="search-result">
                     <ul>
                         {this.state.query !=='' &&
@@ -445,17 +471,20 @@ confirmed.map(function(user){
                 </div>
             </div>
         </div>
-              <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p></div>
+              <div class="login-and-menu"><p>Logged in as: <b>{this.state.user}</b></p>
+               <a id="menu-bars" href="" onClick={this.menuClick}><i class="fas fa-user"></i></a>
+               <a id="sign-off" href=""><i class="fas fa-sign-out-alt"></i></a>
+           </div>
             </div>
 {//side menu
 }
             <div class="widget">
-              <p>friend requests: <b>{this.state.reqCount}</b></p>
+              <p>Friend requests: <b>{this.state.reqCount}</b></p>
             <ul>{this.state.req && this.state.req.map(function(req){
-                return <li onClick={this.confirmFriend.bind(this, req)}>{req[0][1]}</li>;
+                return <li class="requests" onClick={this.confirmFriend.bind(this, req)}>{req[0][1]}</li>;
             }.bind(this))}</ul>
 
-            <p class='missed'>what you missed: <b>{ this.state.missedMsgCount}</b></p>
+          <p class='missed'>What you've missed: <b>{ this.state.missedMsgCount}</b></p>
 
             <ul>{this.state.missedMsg && this.state.missedMsg.map(function(missed){
                   return <li onClick={function(){
@@ -467,9 +496,9 @@ confirmed.map(function(user){
 
                 <p onClick={function(){
                     this.setState({rec: 'public'});
-                  }.bind(this)}>Public Chat</p>
+                  }.bind(this)}>Private Chat</p>
 
-                {this.state.friends.length > 0 ? <p>your friends: </p> : <p> No friends yet</p>}
+                {this.state.friends.length > 0 ? <p>Your friends: </p> : <p> No friends yet</p>}
 
                 <ul>
 
@@ -488,7 +517,7 @@ confirmed.map(function(user){
 
               </div>
 
-              <p>admin messages</p>
+              <p>Admin messages</p>
               <ul>{this.state.adminMessages.length > 0 && this.state.adminMessages.map(function(msg){
                   if(msg.status === 'unread'){
                     return <li class="active" onClick={function(){
@@ -518,7 +547,7 @@ confirmed.map(function(user){
 
               <p onClick={function(){
                   this.setState({rec: 'contactAdmin'});
-                }.bind(this)}>contact admin</p>
+                }.bind(this)}>Contact admin</p>
 
             </div>
 {//main body of page
@@ -527,9 +556,11 @@ confirmed.map(function(user){
 
               {this.state.rec === 'contactAdmin' && <div class="field">
                 <h1>Contact admin</h1>
-                <input placeholder="Subject"></input><br/>
-                <input placeholder="Report user"></input><br/>
-                <textarea placeholder="Message"></textarea><br/>
+                <input placeholder="Subject" width="45"></input><br/>
+                <input placeholder="Report user" width="45"></input><br/>
+                <textarea placeholder="Message" width="45"></textarea><br/>
+                <button type="button">Submit</button>
+
               </div>}
 
             {this.state.rec === 'admin' && <div class="field">
@@ -537,7 +568,7 @@ confirmed.map(function(user){
               <p>{this.state.notification.message}</p>
             </div>}
 
-            {this.state.user === undefined || this.state.rec === undefined ? <div class="field"><h1>welcome to ChatApp!</h1></div> : <div><div class='field'>
+            {this.state.user === undefined || this.state.rec === undefined ? <div class="field"><h1>Welcome to ChatApp!</h1></div> : <div><div class='field'>
                 {this.state.messages.map(function(msg) {
                     var message = msg.string.replace(/hora|fitta|skit|jävla|kurwa|spierdalaj/gi, function(string){
                       var ret = '';
@@ -562,7 +593,7 @@ confirmed.map(function(user){
                         }else{
                             this.setState({toggleEmo: 'hide-emos'});
                         }
-                    }.bind(this)}>emojis</div>
+                    }.bind(this)}>Emojis</div>
                     <div id={this.state.toggleEmo}>
                         {this.state.emojis.map(function(emoji){
                             return <span onClick={function(){
@@ -579,8 +610,10 @@ confirmed.map(function(user){
                     }}.bind(this)}></textarea>
 
                 <button onClick={this.sendString}
+
                 >send</button>
-            </div>}
+                </div>
+                }
 
 
             </div>
