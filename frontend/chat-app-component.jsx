@@ -445,7 +445,7 @@ confirmed.map(function(user){
 }
             {this.state.user !=='admin' ? <div>
               <div id="header">
-<<<<<<< HEAD
+
                 <img src="logo-white.svg"></img>
                 <div>
                   <UserProfile/>
@@ -455,11 +455,11 @@ confirmed.map(function(user){
                 <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
 
 
-=======
+
                 <div class="header-logo"><img src="logo-white.svg"></img></div>
                 <div class="search-friends"><p class="instruct">Send friend request</p>
                 <div class="search-div"><input class="search-bar" placeholder="Search users" value={this.state.query} onChange={this.searchFriends}/>
->>>>>>> 86d4b2141f8733f67cf340f99a2aafb58afc4ac5
+
                 <div class="search-result">
                     <ul>
                         {this.state.query !=='' &&
@@ -610,18 +610,13 @@ confirmed.map(function(user){
                     }}.bind(this)}></textarea>
 
                 <button onClick={this.sendString}
-<<<<<<< HEAD
+
                 >send</button>
                 </div>
-            </div>
-
-=======
-                >Send</button>
-            </div>}
+                }
 
 
             </div>
->>>>>>> 86d4b2141f8733f67cf340f99a2aafb58afc4ac5
             }
 
           </div>
