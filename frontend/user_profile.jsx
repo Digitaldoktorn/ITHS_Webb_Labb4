@@ -17,6 +17,7 @@ class UserProfile extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.submitProfile = this.submitProfile.bind(this);
     this.closeButton = this.closeButton.bind(this);
+
   }
 
   handleClick() {
@@ -48,51 +49,55 @@ class UserProfile extends React.Component {
 
     render() {
         return <div class={this.state.showProfile}>
-                  <input type="checkbox" onClick={this.handleClick} id="menu-toggle" />
-                  <label for="menu-toggle" class="menu-icon"><i class="fa fa-bars"></i></label>
-                  <div class="slideout-sidebar">
-                    <span><img src="user.jpg" alt="users photo" id="user_foto"></img><h1 class="profile_font">My Profile</h1></span>
-                  <ul>
-                  <li class="profile_font">Name<li>{this.state.newName}</li></li>
-                  <li class="profile_font">Surname<li>{this.state.newSurname}</li></li>
-                  <li class="profile_font">Email<li>{this.state.newEmail}</li></li>
-                  <li class="profile_font">Age<li>{this.state.newAge}</li></li>
-                  </ul>
+
+                  <label for="menu-toggle" id="menu-bars"><i onClick={this.props.func1} class="fas fa-user"></i></label>
+
+                {this.props.widget === 'off' && <div class="slideout-sidebar">
+                  <span><img src="user.jpg" alt="users photo" id="user_foto"></img><h1 class="profile_font">My Profile</h1></span>
+                  <i id="cross-exit" class="fas fa-times" onClick={this.props.func2}></i>
+                <ul>
+                <li class="profile_font">Name<li>{this.state.newName}</li></li>
+                <li class="profile_font">Surname<li>{this.state.newSurname}</li></li>
+                <li class="profile_font">Email<li>{this.state.newEmail}</li></li>
+                <li class="profile_font">Age<li>{this.state.newAge}</li></li>
+                </ul>
 
 
-                  <p class="profile_font">Do you want to change your profile?<button onClick={this.toggle}>Click me</button></p>
-                    <div class={this.state.editfield} id="edited_Profile">
+                <p class="profile_font">Do you want to change your profile?<button onClick={this.toggle}>Click me</button></p>
+                  <div class={this.state.editfield} id="edited_Profile">
 
-                    {this.state.editfield !== 'off' ?  <div>
-                      <span class="close" onClick={function(){
-                          this.setState({editfield: 'off'}); }.bind(this)}> &times;</span>
-                        <div id="input_fields">
-                      <p class="editfield_font">Change your name</p>
-                          <input  placeholder="New Name" value={this.state.newName} onChange={function(event){
-                              this.setState({newName: event.target.value});
-                          }.bind(this)}></input><br/>
-                        <p class="editfield_font">Change your surname</p>
-                        <input  placeholder="New Surname" value={this.state.newSurname} onChange={function(event){
-                              this.setState({newSurname: event.target.value});
-                          }.bind(this)}></input><br/>
-                        <p class="editfield_font">Change your email</p>
-                        <input placeholder="New Email" value={this.state.newEmail} onChange={function(event){
-                              this.setState({newEmail: event.target.value});
-                              }.bind(this)}></input><br/>
-                            <p class="editfield_font">Change your age</p>
-                            <input placeholder="New Age" value={this.state.newAge} onChange={function(event){
-                              this.setState({newAge: event.target.value});
-                              }.bind(this)}></input><br/>
-                            <p class="editfield_font">Change your password</p>
-                            <input  placeholder="New Password" value={this.state.newPassword} onChange={function(event){
-                              this.setState({newPassword: event.target.value});
-                              }.bind(this)}></input><br/>
-                            <button onClick={this.submitProfile} onClick={function(){
-                                this.setState({editfield: 'off'}); }.bind(this)}
-                          >Submit</button> </div> </div> : <div></div>
-                    }
-                  </div>
-                  </div>
+                  {this.state.editfield !== 'off' ?  <div>
+                    <span class="close" onClick={function(){
+                        this.setState({editfield: 'off'}); }.bind(this)}> &times;</span>
+                      <div id="input_fields">
+                    <p class="editfield_font">Change your name</p>
+                        <input  placeholder="New Name" value={this.state.newName} onChange={function(event){
+                            this.setState({newName: event.target.value});
+                        }.bind(this)}></input><br/>
+                      <p class="editfield_font">Change your surname</p>
+                      <input  placeholder="New Surname" value={this.state.newSurname} onChange={function(event){
+                            this.setState({newSurname: event.target.value});
+                        }.bind(this)}></input><br/>
+                      <p class="editfield_font">Change your email</p>
+                      <input placeholder="New Email" value={this.state.newEmail} onChange={function(event){
+                            this.setState({newEmail: event.target.value});
+                            }.bind(this)}></input><br/>
+                          <p class="editfield_font">Change your age</p>
+                          <input placeholder="New Age" value={this.state.newAge} onChange={function(event){
+                            this.setState({newAge: event.target.value});
+                            }.bind(this)}></input><br/>
+                          <p class="editfield_font">Change your password</p>
+                          <input  placeholder="New Password" value={this.state.newPassword} onChange={function(event){
+                            this.setState({newPassword: event.target.value});
+                            }.bind(this)}></input><br/>
+                          <button onClick={this.submitProfile} onClick={function(){
+                              this.setState({editfield: 'off'}); }.bind(this)}
+                        >Submit</button> </div> </div> : <div></div>
+                  }
+                </div>
+                </div>}
+
+
         </div>;
     }
 }
