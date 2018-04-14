@@ -29,7 +29,8 @@ class ChatAppComponent extends React.Component {
             friends: [],
             fullFriends: [],
             emojis: ['😀', '😂', '😊', '😍', '😜', '😎', '😡', '😳' ],
-            adminMessages: []
+            adminMessages: [],
+            widget: 'widget'
         };
 
         this.sendString = this.sendString.bind(this);
@@ -48,7 +49,21 @@ class ChatAppComponent extends React.Component {
         this.adminBan = this.adminBan.bind(this);
         this.adminHistory = this.adminHistory.bind(this);
         this.deleteMsg = this.deleteMsg.bind(this);*/
+        this.callback1 = this.callback1.bind(this);
+        this.callback2 = this.callback2.bind(this);
     }
+
+    callback1(){
+
+        return this.setState({widget: 'off'});
+
+    }
+
+    callback2() {
+
+        return this.setState({widget: 'widget'});
+    }
+
 /*
     deleteMsg(msg){
       console.log(msg);
@@ -443,42 +458,34 @@ confirmed.map(function(user){
 
 {//user page
 }
-            {this.state.user !=='admin' ? <div>
-              <div id="header">
-
-                <img src="logo-white.svg"></img>
-                <div>
-                  <UserProfile/>
-                </div>
-                <p>logged in as: <b>{this.state.user}</b></p>
-                <p class="instruct">send friend request</p>
-                <input placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
-
-
-
-                <div class="header-logo"><img src="logo-white.svg"></img></div>
-                <div class="search-friends"><p class="instruct">Send friend request</p>
-                <div class="search-div"><input class="search-bar" placeholder="Search users" value={this.state.query} onChange={this.searchFriends}/>
-
-                <div class="search-result">
-                    <ul>
-                        {this.state.query !=='' &&
-                         this.state.queryRes.map(function(res){
-                             return <li key={res} onClick={this.friendRequest.bind(this, res)}>{res}
-                             </li>;
-                         }.bind(this))}
-                    </ul>
-                </div>
-            </div>
+    {this.state.user !=='admin' ? <div>
+      <div id="header">
+        <div class="header-logo"><img src="logo-white.svg"></img></div>
+        <div class="search-friends"><p class="instruct">send friend request</p>
+        <div class="search-div"><input class="search-bar" placeholder="search users" value={this.state.query} onChange={this.searchFriends}/>
+        <div class="search-result">
+            <ul>
+                {this.state.query !=='' &&
+                 this.state.queryRes.map(function(res){
+                     return <li key={res} onClick={this.friendRequest.bind(this, res)}>{res}
+                     </li>;
+                 }.bind(this))}
+            </ul>
         </div>
-              <div class="login-and-menu"><p>Logged in as: <b>{this.state.user}</b></p>
-               <a id="menu-bars" href="" onClick={this.menuClick}><i class="fas fa-user"></i></a>
-               <a id="sign-off" href=""><i class="fas fa-sign-out-alt"></i></a>
-           </div>
-            </div>
+    </div>
+    </div>
+      <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p>
+       <i id="sign-off" class="fas fa-sign-out-alt"></i>
+    </div>
+    </div>
+
 {//side menu
 }
-            <div class="widget">
+            <div>
+              <UserProfile func1={this.callback1} func2={this.callback2} widget={this.state.widget}/>
+            </div>
+
+            <div class={this.state.widget}>
               <p>Friend requests: <b>{this.state.reqCount}</b></p>
             <ul>{this.state.req && this.state.req.map(function(req){
                 return <li class="requests" onClick={this.confirmFriend.bind(this, req)}>{req[0][1]}</li>;
