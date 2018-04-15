@@ -318,6 +318,7 @@ li.profile_font > li {
   font-size: 1.5rem;
   width: 60%;
   margin-top: 1em;
+  font-family: 'Raleway', sans-serif;
 }
 
 .search-div > .search-bar::placeholder {
@@ -337,7 +338,7 @@ b {
 
 .login-and-menu p {
     float: right;
-    padding-right: 1em;
+    padding-right: 2em;
 }
 
 #header .search-friends > p {
@@ -500,10 +501,11 @@ li:hover{
 }
 
 #sendbutton {
-  height: 10vh;
+  height: 15vh;
   width: 20%;
   box-sizing: content-box;
-  margin-top: -0.1em;
+  margin: -1em;
+  margin-top: 1em;
   float: right;
 }
 
@@ -573,6 +575,8 @@ li:hover{
 
 .active {
   background-color: #91D8D6;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9em;
 }
 
 @media (max-width: 933px) {
@@ -582,10 +586,11 @@ li:hover{
      width: 100%;
    }
 
-   #post > button{
+   #sendbutton{
      height: 5vh;
      width: 90%;
      box-sizing: content-box;
+     margin-left: 1em;
      margin-top: -0.1em;
      float: left;
    }
@@ -615,7 +620,7 @@ li:hover{
      width: 70%;
    }
 
-   #post button{
+   #sendbutton {
      height: 10vh;
      width: 20%;
      box-sizing: content-box;
@@ -642,12 +647,12 @@ li:hover{
      width: 70%;
    }
 
-   #post button{
-     height: 10vh;
-     width: 30%;
-     box-sizing: content-box;
-     margin-top: -0.1em;
-     float: right;
+   #sendbutton {
+       height: 10vh;
+       width: 20%;
+       box-sizing: content-box;
+       margin: -1em;
+       float: right;
    }
 
    .main {
