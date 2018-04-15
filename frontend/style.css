@@ -499,7 +499,7 @@ li:hover{
   width: 75%;
 }
 
-#post button{
+#sendbutton {
   height: 10vh;
   width: 20%;
   box-sizing: content-box;

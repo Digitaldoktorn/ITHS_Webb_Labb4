@@ -616,7 +616,7 @@ confirmed.map(function(user){
                         this.sendString();
                     }}.bind(this)}></textarea>
 
-                <button onClick={this.sendString}
+                <button id ="sendbutton" onClick={this.sendString}
 
                 >send</button>
                 </div>
