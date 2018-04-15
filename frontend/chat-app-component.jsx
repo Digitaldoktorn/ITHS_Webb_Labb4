@@ -13,7 +13,7 @@ class ChatAppComponent extends React.Component {
   //setting initial states that needs a value (empty arrays works as backup for functions like filter and map to run)
         this.state = {
             user: undefined,
-            rec: undefined,
+            rec: 'public',
             string: '',
             messages: [],
             tfmsg: [],
@@ -408,7 +408,7 @@ confirmed.map(function(user){
                     <div class={this.state.signBody}>
                       <img src="logo.svg"></img>
                         <h3 id="login-text">Log in</h3>
-                        <input placeholder="User name" value={this.state.userInput} onChange={function(event){
+                        <input placeholder="Username" value={this.state.userInput} onChange={function(event){
                             this.setState({userInput: event.target.value});
                         }.bind(this)}></input><br/>
 
@@ -475,7 +475,7 @@ confirmed.map(function(user){
     </div>
     </div>
       <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p>
-       <i id="sign-off" class="fas fa-sign-out-alt"></i>
+       <a href=""><i id="sign-off" class="fas fa-sign-out-alt"></i></a>
     </div>
     </div>
 
@@ -503,11 +503,11 @@ confirmed.map(function(user){
 
                 <p onClick={function(){
                     this.setState({rec: 'public'});
-                  }.bind(this)}>Private Chat</p>
+                }.bind(this)}>Public Chat</p>
 
                 {this.state.friends.length > 0 ? <p>Your friends: </p> : <p> No friends yet</p>}
 
-                <ul>
+                <ul class="your-friends">
 
                   {this.state.fullFriends.map(function(user) {
                     if(user.status === 'online'){
@@ -515,7 +515,7 @@ confirmed.map(function(user){
                           this.setState({rec: user.name});
                       }.bind(this)}>{user.name} ({user.status})</li>;
                     }else {
-                      return <li key={user._id} value={user.name}  onClick={function() {
+                      return <li id="offline" key={user._id} value={user.name}  onClick={function() {
                           this.setState({rec: user.name});
                       }.bind(this)}>{user.name} ({user.status})</li>;
                     }
@@ -616,7 +616,7 @@ confirmed.map(function(user){
                         this.sendString();
                     }}.bind(this)}></textarea>
 
-                <button onClick={this.sendString}
+                <button id ="sendbutton" onClick={this.sendString}
 
                 >send</button>
                 </div>

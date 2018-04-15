@@ -101,6 +101,12 @@ button {
     font-weight: 800;
 }
 
+.widget > p > b {
+    color: #91D8D6;
+    font-size: 1.5em;
+}
+
+
 #menu-bars {
     position: absolute;
     font-size: 2.5rem;
@@ -184,6 +190,10 @@ button:hover {
   transition: all 300ms ease-in-out;
 }
 
+.slideout-sidebar h1 {
+    color: #91D8D6;
+}
+
 
 .slideout-sidebar ul {
   list-style: none;
@@ -194,8 +204,8 @@ button:hover {
 .slideout-sidebar ul li {
   cursor: pointer;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(244,244,244,0.4);
-  color: rgba(244,244,244,0.7);
+  border: 1px solid rgba(244,244,244,0.4);
+  color: #91D8D6;
 }
 
 .slideout-sidebar ul li:last-child {
@@ -204,7 +214,7 @@ button:hover {
 
 .slideout-sidebar ul li:hover {
   color: #1c7c70;
-  background-color: #91D8D6;
+  background-color: white;
 }
 #menu-toggle {
   display: none;
@@ -249,15 +259,19 @@ button:hover {
 
 .profile_font {
   font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
-  font-size: 14px;
-  color: white;
-  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+  font-size: 1rem;
+  color: #91D8D6;
 }
+
+li.profile_font > li {
+    font-size: 0.8rem;
+    color: #91D8D6;
+}
+
 .editfield_font {
   font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
-  font-size: 14px;
-  color: black;
-  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+  color: #91D8D6;
+  font-size: 1rem;
 }
 
 .close {
@@ -304,6 +318,7 @@ button:hover {
   font-size: 1.5rem;
   width: 60%;
   margin-top: 1em;
+  font-family: 'Raleway', sans-serif;
 }
 
 .search-div > .search-bar::placeholder {
@@ -323,7 +338,7 @@ b {
 
 .login-and-menu p {
     float: right;
-    padding-right: 1em;
+    padding-right: 2em;
 }
 
 #header .search-friends > p {
@@ -482,14 +497,14 @@ li:hover{
 
 #post textarea{
   height: 15vh;
-  width: 75%;
+  width: 70%;
 }
 
-#post button{
-  height: 10vh;
+#sendbutton {
+  height: 12vh;
   width: 20%;
   box-sizing: content-box;
-  margin-top: -0.1em;
+  margin-top: 0.5em;
   float: right;
 }
 
@@ -559,19 +574,22 @@ li:hover{
 
 .active {
   background-color: #91D8D6;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9em;
 }
 
 @media (max-width: 933px) {
 
    #post textarea{
      height: 10vh;
-     width: 100%;
+     width: 90%;
    }
 
-   #post > button{
+   #sendbutton{
      height: 5vh;
-     width: 90%;
+     width: 80%;
      box-sizing: content-box;
+     margin-left: 1em;
      margin-top: -0.1em;
      float: left;
    }
@@ -590,7 +608,7 @@ li:hover{
    }
 
    #post{
-     margin-left: 3em;
+     margin-left: 1em;
      margin-bottom: 3em;
      height: 2em;
      width: 90%;
@@ -601,11 +619,10 @@ li:hover{
      width: 70%;
    }
 
-   #post button{
+   #sendbutton {
      height: 10vh;
      width: 20%;
      box-sizing: content-box;
-     margin-top: -0.1em;
      float: right;
    }
 
@@ -613,33 +630,80 @@ li:hover{
        width: 100%;
    }
    .widget {
-       display: none;
+      clear: left;
+      width: 90%;
+      text-align: center;
    }
+
+   .your-friends {
+       text-align: center;
+   }
+
+.active {
+   background-color: #91D8D6;
+   font-family: 'Raleway', sans-serif;
+   font-size: 0.9em;
+   width: 100%;
+    }
+    #offline {
+        width: 100%;
+    }
 }
 
 @media (max-width: 622px) {
    #post{
      margin-bottom: 3em;
+     margin-left: 1em;
      height: 2em;
-     width: 100vw;
+     width: 90%;
    }
    #post textarea{
      height: 10vh;
-     width: 70%;
+     width: 60%;
    }
 
-   #post button{
-     height: 10vh;
-     width: 30%;
-     box-sizing: content-box;
-     margin-top: -0.1em;
-     float: right;
+   #sendbutton {
+       height: 10vh;
+       width: 20%;
+       box-sizing: content-box;
+       float: right;
    }
 
    .main {
        width: 100%;
+       margin-top: 2em;
    }
    .widget {
-       display: none;
+       clear: left;
+       width: 90%;
+       text-align: center;
    }
+
+   #sign-off {
+       font-size: 2em;
+   }
+   #menu-bars {
+       font-size: 2em;
+   }
+
+   .active {
+       background-color: #91D8D6;
+       font-family: 'Raleway', sans-serif;
+       font-size: 0.9em;
+       width: 100%;
+   }
+
+   #offline {
+       width: 100%;
+   }
+
+   .your-friends {
+       text-align: center;
+   }
+
+   .slideout-sidebar {
+       width: 90%;
+   }
+
+
 }
