@@ -497,15 +497,14 @@ li:hover{
 
 #post textarea{
   height: 15vh;
-  width: 75%;
+  width: 70%;
 }
 
 #sendbutton {
-  height: 15vh;
+  height: 12vh;
   width: 20%;
   box-sizing: content-box;
-  margin: -1em;
-  margin-top: 1em;
+  margin-top: 0.5em;
   float: right;
 }
 
@@ -583,12 +582,12 @@ li:hover{
 
    #post textarea{
      height: 10vh;
-     width: 100%;
+     width: 90%;
    }
 
    #sendbutton{
      height: 5vh;
-     width: 90%;
+     width: 80%;
      box-sizing: content-box;
      margin-left: 1em;
      margin-top: -0.1em;
@@ -609,7 +608,7 @@ li:hover{
    }
 
    #post{
-     margin-left: 3em;
+     margin-left: 1em;
      margin-bottom: 3em;
      height: 2em;
      width: 90%;
@@ -624,7 +623,6 @@ li:hover{
      height: 10vh;
      width: 20%;
      box-sizing: content-box;
-     margin-top: -0.1em;
      float: right;
    }
 
@@ -647,29 +645,33 @@ li:hover{
    font-size: 0.9em;
    width: 100%;
     }
+    #offline {
+        width: 100%;
+    }
 }
 
 @media (max-width: 622px) {
    #post{
      margin-bottom: 3em;
+     margin-left: 1em;
      height: 2em;
-     width: 100vw;
+     width: 90%;
    }
    #post textarea{
      height: 10vh;
-     width: 65vw;
+     width: 60%;
    }
 
    #sendbutton {
        height: 10vh;
        width: 20%;
        box-sizing: content-box;
-       margin: -1em;
        float: right;
    }
 
    .main {
        width: 100%;
+       margin-top: 2em;
    }
    .widget {
        clear: left;
@@ -702,5 +704,6 @@ li:hover{
    .slideout-sidebar {
        width: 90%;
    }
+
 
 }
