@@ -507,7 +507,7 @@ confirmed.map(function(user){
 
                 {this.state.friends.length > 0 ? <p>Your friends: </p> : <p> No friends yet</p>}
 
-                <ul>
+                <ul class="your-friends">
 
                   {this.state.fullFriends.map(function(user) {
                     if(user.status === 'online'){
@@ -515,7 +515,7 @@ confirmed.map(function(user){
                           this.setState({rec: user.name});
                       }.bind(this)}>{user.name} ({user.status})</li>;
                     }else {
-                      return <li key={user._id} value={user.name}  onClick={function() {
+                      return <li id="offline" key={user._id} value={user.name}  onClick={function() {
                           this.setState({rec: user.name});
                       }.bind(this)}>{user.name} ({user.status})</li>;
                     }

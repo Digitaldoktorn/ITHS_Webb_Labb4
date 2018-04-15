@@ -632,8 +632,21 @@ li:hover{
        width: 100%;
    }
    .widget {
-       display: none;
+      clear: left;
+      width: 90%;
+      text-align: center;
    }
+
+   .your-friends {
+       text-align: center;
+   }
+
+.active {
+   background-color: #91D8D6;
+   font-family: 'Raleway', sans-serif;
+   font-size: 0.9em;
+   width: 100%;
+    }
 }
 
 @media (max-width: 622px) {
@@ -644,7 +657,7 @@ li:hover{
    }
    #post textarea{
      height: 10vh;
-     width: 70%;
+     width: 65vw;
    }
 
    #sendbutton {
@@ -659,6 +672,35 @@ li:hover{
        width: 100%;
    }
    .widget {
-       display: none;
+       clear: left;
+       width: 90%;
+       text-align: center;
    }
+
+   #sign-off {
+       font-size: 2em;
+   }
+   #menu-bars {
+       font-size: 2em;
+   }
+
+   .active {
+       background-color: #91D8D6;
+       font-family: 'Raleway', sans-serif;
+       font-size: 0.9em;
+       width: 100%;
+   }
+
+   #offline {
+       width: 100%;
+   }
+
+   .your-friends {
+       text-align: center;
+   }
+
+   .slideout-sidebar {
+       width: 90%;
+   }
+
 }
