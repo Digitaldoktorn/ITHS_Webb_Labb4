@@ -13,7 +13,7 @@ class ChatAppComponent extends React.Component {
   //setting initial states that needs a value (empty arrays works as backup for functions like filter and map to run)
         this.state = {
             user: undefined,
-            rec: undefined,
+            rec: 'public',
             string: '',
             messages: [],
             tfmsg: [],
@@ -408,7 +408,7 @@ confirmed.map(function(user){
                     <div class={this.state.signBody}>
                       <img src="logo.svg"></img>
                         <h3 id="login-text">Log in</h3>
-                        <input placeholder="User name" value={this.state.userInput} onChange={function(event){
+                        <input placeholder="Username" value={this.state.userInput} onChange={function(event){
                             this.setState({userInput: event.target.value});
                         }.bind(this)}></input><br/>
 
@@ -475,7 +475,7 @@ confirmed.map(function(user){
     </div>
     </div>
       <div class="login-and-menu"><p>logged in as: <b>{this.state.user}</b></p>
-       <i id="sign-off" class="fas fa-sign-out-alt"></i>
+       <a href=""><i id="sign-off" class="fas fa-sign-out-alt"></i></a>
     </div>
     </div>
 

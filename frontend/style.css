@@ -101,6 +101,12 @@ button {
     font-weight: 800;
 }
 
+.widget > p > b {
+    color: #91D8D6;
+    font-size: 1.5em;
+}
+
+
 #menu-bars {
     position: absolute;
     font-size: 2.5rem;
@@ -184,6 +190,10 @@ button:hover {
   transition: all 300ms ease-in-out;
 }
 
+.slideout-sidebar h1 {
+    color: #91D8D6;
+}
+
 
 .slideout-sidebar ul {
   list-style: none;
@@ -194,8 +204,8 @@ button:hover {
 .slideout-sidebar ul li {
   cursor: pointer;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(244,244,244,0.4);
-  color: rgba(244,244,244,0.7);
+  border: 1px solid rgba(244,244,244,0.4);
+  color: #91D8D6;
 }
 
 .slideout-sidebar ul li:last-child {
@@ -204,7 +214,7 @@ button:hover {
 
 .slideout-sidebar ul li:hover {
   color: #1c7c70;
-  background-color: #91D8D6;
+  background-color: white;
 }
 #menu-toggle {
   display: none;
@@ -249,15 +259,19 @@ button:hover {
 
 .profile_font {
   font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
-  font-size: 14px;
-  color: white;
-  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+  font-size: 1rem;
+  color: #91D8D6;
 }
+
+li.profile_font > li {
+    font-size: 0.8rem;
+    color: #91D8D6;
+}
+
 .editfield_font {
   font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
-  font-size: 14px;
-  color: black;
-  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+  color: #91D8D6;
+  font-size: 1rem;
 }
 
 .close {
