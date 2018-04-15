@@ -252,6 +252,7 @@ button:hover {
     height: 80vh;
     position: absolute;
     top: 15vh;
+    right: 0;
 }
 #user_foto {
   border-radius: 50%;
