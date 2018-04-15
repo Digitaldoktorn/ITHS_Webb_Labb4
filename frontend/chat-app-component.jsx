@@ -503,7 +503,7 @@ confirmed.map(function(user){
 
                 <p onClick={function(){
                     this.setState({rec: 'public'});
-                  }.bind(this)}>Private Chat</p>
+                }.bind(this)}>Public Chat</p>
 
                 {this.state.friends.length > 0 ? <p>Your friends: </p> : <p> No friends yet</p>}
 
