@@ -645,8 +645,19 @@ li:hover{
    font-size: 0.9em;
    width: 100%;
     }
+
     #offline {
         width: 100%;
+    }
+
+    #edited_Profile {
+        background-color: #bce2e5;
+        padding: 1em;
+        width: 90%;
+        height: 80vh;
+        position: absolute;
+        top: 15vh;
+        right: 0;
     }
 }
 
@@ -681,9 +692,11 @@ li:hover{
 
    #sign-off {
        font-size: 2em;
+       margin-right: -0.5em;
    }
    #menu-bars {
        font-size: 2em;
+       margin-right: -1em;
    }
 
    .active {
@@ -703,6 +716,16 @@ li:hover{
 
    .slideout-sidebar {
        width: 90%;
+   }
+
+   #edited_Profile {
+       background-color: #bce2e5;
+       padding: 1em;
+       width: 90%;
+       height: 80vh;
+       position: absolute;
+       top: 15vh;
+       right: 0;
    }
 
 
