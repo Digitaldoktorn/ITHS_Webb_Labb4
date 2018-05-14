@@ -216,7 +216,7 @@ app.put('/check', function (request, response) {
     });
 });
 
-app.put('/updateuser', function (request, response) {
+/*app.put('/updateuser', function (request, response) {
   database.collection('user').update(
     {name: request.query.user},
     {$set: {'name': request.query.updatename, 'password': request.query.updatepassword, 'age': request.query.updateage, 'email': request.query.updatemail} },
@@ -228,6 +228,16 @@ app.put('/updateuser', function (request, response) {
         response.send(result);
       }
     });
+});*/
+app.put('/updateuser', function (request, response) {
+  database.collection('user').update(
+    {name: request.query.user},
+    {$set: {'name': request.query.user, 'password': request.query.newpass, 'age': request.query.newage,
+      'surname': request.query.newsurname, 'email': request.query.newemail, }},{upsert: true},
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }else {response.send(result);}});
 });
 
 
